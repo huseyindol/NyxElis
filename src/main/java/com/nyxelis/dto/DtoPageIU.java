@@ -1,11 +1,10 @@
 package com.nyxelis.dto;
 
 import com.nyxelis.entity.SeoInfo;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class DtoPageIU {

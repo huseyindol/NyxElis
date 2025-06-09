@@ -9,4 +9,6 @@ public interface IPageService {
     public DtoPageIU createPage(DtoPageIU dtoPageIU);
 
     public DtoPageIU updatePage(Long id, DtoPageIU dtoPageIU);
+
+    public void deletePage(Long id);
 }

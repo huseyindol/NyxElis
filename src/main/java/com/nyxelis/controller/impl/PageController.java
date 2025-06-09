@@ -25,10 +25,16 @@ public class PageController implements IPageController {
         return pageService.createPage(dtoPageIU);
     }
 
-    @PutMapping("/update/{id}")
+    @PostMapping("/update/{id}")
     @Override
     public DtoPageIU updatePage(@PathVariable(value = "id") Long id, @RequestBody DtoPageIU dtoPageIU) {
         return pageService.updatePage(id, dtoPageIU);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @Override
+    public void deletePage(@PathVariable(value = "id") Long id) {
+        pageService.deletePage(id);
     }
 
 }
