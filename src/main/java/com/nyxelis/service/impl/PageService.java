@@ -1,6 +1,6 @@
 package com.nyxelis.service.impl;
 
-import com.nyxelis.dto.DtoPageIU;
+import com.nyxelis.dto.DtoPage;
 import com.nyxelis.entity.Page;
 import com.nyxelis.mapper.PageMapper;
 import com.nyxelis.repository.PageRepository;
@@ -16,28 +16,28 @@ public class PageService implements IPageService {
     private PageRepository pageRepository;
 
     @Override
-    public DtoPageIU pageFindById(Long id) {
+    public DtoPage pageFindById(Long id) {
         Page pageDB = pageRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Page not found with id: " + id));
-        return PageMapper.INSTANCE.toDtoIU(pageDB);
+        return PageMapper.INSTANCE.toPageDto(pageDB);
     }
 
     @Override
-    public DtoPageIU createPage(DtoPageIU dtoPageIU) {
-        Page pageEntity = PageMapper.INSTANCE.toEntityIU(dtoPageIU);
+    public DtoPage createPage(DtoPage dtoPage) {
+        Page pageEntity = PageMapper.INSTANCE.toPageEntity(dtoPage);
         Page saved = pageRepository.save(pageEntity);
-        return PageMapper.INSTANCE.toDtoIU(saved);
+        return PageMapper.INSTANCE.toPageDto(saved);
     }
 
     @Override
-    public DtoPageIU updatePage(Long id, DtoPageIU dtoPageIU) {
+    public DtoPage updatePage(Long id, DtoPage dtoPage) {
         Page page = pageRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Page not found with id: " + id));
         // DTO'dan gelen alanları var olan entity üzerine uygula
-        PageMapper.INSTANCE.updateEntityFromDto(dtoPageIU, page);
+        PageMapper.INSTANCE.updatePageEntityFromDto(dtoPage, page);
         // updatedAt otomatik setlenebilir, gerekiyorsa burada da el ile yazılabilir
         Page updatedPage = pageRepository.save(page);
-        return PageMapper.INSTANCE.toDtoIU(updatedPage);
+        return PageMapper.INSTANCE.toPageDto(updatedPage);
     }
 
     @Override
@@ -45,5 +45,12 @@ public class PageService implements IPageService {
         Page pageDB = pageRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Page not found with id: " + id));
         pageRepository.delete(pageDB);
+    }
+
+    @Override
+    public DtoPage pageFindBySlug(String slug) {
+        Page pageDB = pageRepository.findBySlug(slug)
+                .orElseThrow(() -> new EntityNotFoundException("Page not found with slug: " + slug));
+        return PageMapper.INSTANCE.toPageDto(pageDB);
     }
 }

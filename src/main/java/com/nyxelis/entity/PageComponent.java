@@ -2,7 +2,10 @@ package com.nyxelis.entity;
 
 import com.nyxelis.entity.id.PageComponentId;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "page_components")

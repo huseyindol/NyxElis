@@ -1,14 +1,15 @@
 package com.nyxelis.service;
 
-import com.nyxelis.dto.DtoPageIU;
+import com.nyxelis.dto.DtoPage;
 
 public interface IPageService {
+    public DtoPage pageFindById(Long id);
 
-    public DtoPageIU pageFindById(Long id);
+    public DtoPage pageFindBySlug(String slug);
 
-    public DtoPageIU createPage(DtoPageIU dtoPageIU);
+    public DtoPage createPage(DtoPage dtoPage);
 
-    public DtoPageIU updatePage(Long id, DtoPageIU dtoPageIU);
+    public DtoPage updatePage(Long id, DtoPage dtoPage);
 
     public void deletePage(Long id);
 }

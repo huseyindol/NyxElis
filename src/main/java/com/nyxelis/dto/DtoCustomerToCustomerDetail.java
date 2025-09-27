@@ -1,6 +1,9 @@
 package com.nyxelis.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -8,8 +11,6 @@ import lombok.*;
 @AllArgsConstructor
 public class DtoCustomerToCustomerDetail {
     private String address;
-
     private String phoneNumber;
-
     private String email;
 }

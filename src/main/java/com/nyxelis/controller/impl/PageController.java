@@ -1,34 +1,36 @@
 package com.nyxelis.controller.impl;
 
 import com.nyxelis.controller.IPageController;
-import com.nyxelis.dto.DtoPageIU;
+import com.nyxelis.dto.DtoPage;
 import com.nyxelis.service.IPageService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/page")
+@Tag(name = "Page Services")
 public class PageController implements IPageController {
 
     @Autowired
     private IPageService pageService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/{slug}")
     @Override
-    public DtoPageIU pageFindById(@PathVariable(value = "id") Long id) {
-        return pageService.pageFindById(id);
+    public DtoPage pageFindBySlug(@PathVariable(value = "slug") String slug) {
+        return pageService.pageFindBySlug(slug);
     }
 
     @PostMapping("/create")
     @Override
-    public DtoPageIU createPage(@RequestBody DtoPageIU dtoPageIU) {
-        return pageService.createPage(dtoPageIU);
+    public DtoPage createPage(@RequestBody DtoPage dtoPage) {
+        return pageService.createPage(dtoPage);
     }
 
     @PostMapping("/update/{id}")
     @Override
-    public DtoPageIU updatePage(@PathVariable(value = "id") Long id, @RequestBody DtoPageIU dtoPageIU) {
-        return pageService.updatePage(id, dtoPageIU);
+    public DtoPage updatePage(@PathVariable(value = "id") Long id, @RequestBody DtoPage dtoPage) {
+        return pageService.updatePage(id, dtoPage);
     }
 
     @DeleteMapping("/delete/{id}")

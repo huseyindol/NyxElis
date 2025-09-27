@@ -3,6 +3,7 @@ package com.nyxelis.controller.impl;
 import com.nyxelis.controller.IPageComponentController;
 import com.nyxelis.dto.DtoPageComponent;
 import com.nyxelis.service.IPageComponentService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/page-component")
+@Tag(name = "Page Component Services")
 public class PageComponentController implements IPageComponentController {
 
     @Autowired

@@ -1,18 +1,19 @@
 package com.nyxelis.dto;
 
-import com.nyxelis.entity.SeoInfo;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DtoPageIU {
+public class DtoPage {
     private String title;
-
+    private String description;
+    private String content;
     private String slug;
-
     private Boolean isActive;
-
     private DtoSeoInfo seoInfo;
 }

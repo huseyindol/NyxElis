@@ -1,7 +1,10 @@
 package com.nyxelis.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +20,10 @@ public class Page extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
-
+    private String description;
+    private String content;
     private String slug;
-
     private Boolean isActive;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

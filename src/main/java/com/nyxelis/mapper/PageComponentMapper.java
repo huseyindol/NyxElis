@@ -16,7 +16,5 @@ public interface PageComponentMapper {
     @Mapping(source = "component.id", target = "componentId")
     DtoPageComponent toPageComponentDto(PageComponent pageComponent);
 
-    PageComponent toPageComponentEntity(DtoPageComponent dtoPageComponent);
-
     List<DtoPageComponent> toPageComponentDtoList(List<PageComponent> pageComponents);
 }

@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Ana Sayfa",
+    "slug": "home",
+    "description": "Ana Sayfa",
+    "content": "",
+    "isActive": true,
+    "seoInfo": {
+      "title": "Ana Sayfa | Hüseyin DOL Portfolio",
+      "description": "Full Stack Developer & UI/UX Designer olarak çalışmalarım ve deneyimlerim",
+      "keywords": "Hüseyin DOL,Portfolio,Full Stack Developer,Frontend Developer,JavaScript,TypeScript,React,Next.js,Node.js,Express,MongoDB,MySQL,PostgreSQL,Docker,Kubernetes",
+      "canonicalUrl": "https://next.huseyindol.site",
+      "noIndex": "false",
+      "noFollow": "false"
+    }
+  },
+  {
+    "title": "Hakkımda",
+    "slug": "about",
+    "description": "Hakkımda",
+    "content": "Hakkımda",
+    "isActive": true,
+    "seoInfo": {
+      "title": "Hakkımda | Hüseyin DOL Portfolio",
+      "description": "Hakkımda sayfasına hoş geldiniz. Ben Hüseyin DOL, bir frontend developer ve UI/UX tasarımcısıyım.",
+      "keywords": "Hüseyin DOL,Hakkımda,Full Stack Developer,Frontend Developer,JavaScript,TypeScript,React,Next.js,Node.js,Express,MongoDB,MySQL,PostgreSQL,Docker,Kubernetes",
+      "canonicalUrl": "https://next.huseyindol.site",
+      "noIndex": "false",
+      "noFollow": "false"
+    }
+  }
+]

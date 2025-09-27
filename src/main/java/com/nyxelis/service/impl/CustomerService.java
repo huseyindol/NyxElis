@@ -23,7 +23,7 @@ public class CustomerService implements ICustomerService {
             return null; // or throw an exception, depending on your error handling strategy
         }
         Customer customerDb = optionalCustomer.get();
-        DtoCustomer dtoCustomer = CustomerMapper.INSTANCE.toDto(customerDb);
+        DtoCustomer dtoCustomer = CustomerMapper.INSTANCE.toCustomerDto(customerDb);
         return dtoCustomer;
     }
 

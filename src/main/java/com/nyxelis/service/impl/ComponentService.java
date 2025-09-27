@@ -1,6 +1,6 @@
 package com.nyxelis.service.impl;
 
-import com.nyxelis.dto.DtoComponentIU;
+import com.nyxelis.dto.DtoComponent;
 import com.nyxelis.entity.Component;
 import com.nyxelis.enums.ComponentType;
 import com.nyxelis.mapper.ComponentMapper;
@@ -18,19 +18,19 @@ public class ComponentService implements IComponentService {
     private ComponentRepository componentRepository;
 
     @Override
-    public DtoComponentIU createComponent(DtoComponentIU dtoComponentIU) {
-        Component component = ComponentMapper.INSTANCE.toEntityIU(dtoComponentIU);
+    public DtoComponent createComponent(DtoComponent dtoComponent) {
+        Component component = ComponentMapper.INSTANCE.toComponentEntity(dtoComponent);
         Component saved = componentRepository.save(component);
-        return ComponentMapper.INSTANCE.toDtoIU(saved);
+        return ComponentMapper.INSTANCE.toComponentDto(saved);
     }
 
     @Override
-    public DtoComponentIU updateComponent(Long id, DtoComponentIU dtoComponentIU) {
+    public DtoComponent updateComponent(Long id, DtoComponent dtoComponent) {
         Component component = componentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Component not found"));
-        ComponentMapper.INSTANCE.updateEntityFromDto(dtoComponentIU, component);
+        ComponentMapper.INSTANCE.updateComponentEntityFromDto(dtoComponent, component);
         Component saved = componentRepository.save(component);
-        return ComponentMapper.INSTANCE.toDtoIU(saved);
+        return ComponentMapper.INSTANCE.toComponentDto(saved);
     }
 
     @Override
@@ -39,20 +39,20 @@ public class ComponentService implements IComponentService {
     }
 
     @Override
-    public DtoComponentIU getComponentById(Long id) {
+    public DtoComponent getComponentById(Long id) {
         Component component = componentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Component not found"));
-        return ComponentMapper.INSTANCE.toDtoIU(component);
+        return ComponentMapper.INSTANCE.toComponentDto(component);
     }
 
     @Override
-    public List<DtoComponentIU> getComponentsByComponentType(ComponentType componentType) {
+    public List<DtoComponent> getComponentsByComponentType(ComponentType componentType) {
         List<Component> components = componentRepository.findByType(componentType);
-        return ComponentMapper.INSTANCE.toDtoIUList(components);
+        return ComponentMapper.INSTANCE.toComponentDtoList(components);
     }
 
     // @Override
-    // public List<DtoComponentIU> getComponentsByPageId(Long pageId) {
+    // public List<DtoComponent> getComponentsByPageId(Long pageId) {
     // List<Component> components =
     // componentRepository.findByPageComponentsPageId(pageId);
     // return ComponentMapper.INSTANCE.toDtoIUList(components);

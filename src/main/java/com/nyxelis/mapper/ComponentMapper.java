@@ -1,6 +1,6 @@
 package com.nyxelis.mapper;
 
-import com.nyxelis.dto.DtoComponentIU;
+import com.nyxelis.dto.DtoComponent;
 import com.nyxelis.entity.Component;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -12,11 +12,11 @@ import java.util.List;
 public interface ComponentMapper {
     ComponentMapper INSTANCE = Mappers.getMapper(ComponentMapper.class);
 
-    DtoComponentIU toDtoIU(Component component);
+    DtoComponent toComponentDto(Component component);
 
-    Component toEntityIU(DtoComponentIU dtoComponentIU);
+    Component toComponentEntity(DtoComponent dtoComponent);
 
-    void updateEntityFromDto(DtoComponentIU dtoComponentIU, @MappingTarget Component component);
+    void updateComponentEntityFromDto(DtoComponent dtoComponent, @MappingTarget Component component);
 
-    List<DtoComponentIU> toDtoIUList(List<Component> components);
+    List<DtoComponent> toComponentDtoList(List<Component> components);
 }

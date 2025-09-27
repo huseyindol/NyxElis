@@ -2,7 +2,10 @@ package com.nyxelis.entity;
 
 import com.nyxelis.enums.ComponentType;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +21,7 @@ public class Component extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     private String title;
 
     @Column(columnDefinition = "TEXT")
@@ -33,4 +34,7 @@ public class Component extends BaseEntity {
 
     @OneToMany(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PageComponent> pageComponents = new ArrayList<>();
+
+    @OneToMany(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ComponentBanner> componentBanners = new ArrayList<>();
 }

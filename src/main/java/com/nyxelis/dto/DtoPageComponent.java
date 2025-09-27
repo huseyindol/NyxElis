@@ -11,8 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DtoPageComponent {
     private Long pageId;
-
     private Long componentId;
-
     private Integer orderIndex;
 }

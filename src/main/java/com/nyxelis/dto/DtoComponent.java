@@ -10,14 +10,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DtoComponentIU {
+public class DtoComponent {
     private String name;
-
     private String title;
-
     private String content;
-
     private ComponentType type;
-
     private Boolean isActive;
 }
