@@ -16,6 +16,9 @@ public class CustomerService implements ICustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private CustomerMapper customerMapper;
+
     @Override
     public DtoCustomer findById(Long id) {
         Optional<Customer> optionalCustomer = customerRepository.findById(id);
@@ -23,7 +26,7 @@ public class CustomerService implements ICustomerService {
             return null; // or throw an exception, depending on your error handling strategy
         }
         Customer customerDb = optionalCustomer.get();
-        DtoCustomer dtoCustomer = CustomerMapper.INSTANCE.toCustomerDto(customerDb);
+        DtoCustomer dtoCustomer = customerMapper.toCustomerDto(customerDb);
         return dtoCustomer;
     }
 

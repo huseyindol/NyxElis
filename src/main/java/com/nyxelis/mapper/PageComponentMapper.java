@@ -8,12 +8,11 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = { ComponentMapper.class })
 public interface PageComponentMapper {
-    PageComponentMapper INSTANCE = Mappers.getMapper(PageComponentMapper.class);
-
     @Mapping(source = "page.id", target = "pageId")
     @Mapping(source = "component.id", target = "componentId")
+    @Mapping(source = "component", target = "component")
     DtoPageComponent toPageComponentDto(PageComponent pageComponent);
 
     List<DtoPageComponent> toPageComponentDtoList(List<PageComponent> pageComponents);

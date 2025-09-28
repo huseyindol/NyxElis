@@ -6,14 +6,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class DtoComponent {
+    private Long id;
     private String name;
     private String title;
     private String content;
     private ComponentType type;
     private Boolean isActive;
+    private List<DtoBanner> banners; // Component içindeki banner'lar
 }

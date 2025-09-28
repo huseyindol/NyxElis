@@ -3,15 +3,14 @@ package com.nyxelis.mapper;
 import com.nyxelis.dto.DtoComponent;
 import com.nyxelis.entity.Component;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring", uses = { BannerMapper.class })
 public interface ComponentMapper {
-    ComponentMapper INSTANCE = Mappers.getMapper(ComponentMapper.class);
-
+    @Mapping(source = "componentBanners", target = "banners")
     DtoComponent toComponentDto(Component component);
 
     Component toComponentEntity(DtoComponent dtoComponent);

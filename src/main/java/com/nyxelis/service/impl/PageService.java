@@ -15,18 +15,21 @@ public class PageService implements IPageService {
     @Autowired
     private PageRepository pageRepository;
 
+    @Autowired
+    private PageMapper pageMapper;
+
     @Override
     public DtoPage pageFindById(Long id) {
         Page pageDB = pageRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Page not found with id: " + id));
-        return PageMapper.INSTANCE.toPageDto(pageDB);
+        return pageMapper.toPageDto(pageDB);
     }
 
     @Override
     public DtoPage createPage(DtoPage dtoPage) {
-        Page pageEntity = PageMapper.INSTANCE.toPageEntity(dtoPage);
+        Page pageEntity = pageMapper.toPageEntity(dtoPage);
         Page saved = pageRepository.save(pageEntity);
-        return PageMapper.INSTANCE.toPageDto(saved);
+        return pageMapper.toPageDto(saved);
     }
 
     @Override
@@ -34,10 +37,10 @@ public class PageService implements IPageService {
         Page page = pageRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Page not found with id: " + id));
         // DTO'dan gelen alanları var olan entity üzerine uygula
-        PageMapper.INSTANCE.updatePageEntityFromDto(dtoPage, page);
+        pageMapper.updatePageEntityFromDto(dtoPage, page);
         // updatedAt otomatik setlenebilir, gerekiyorsa burada da el ile yazılabilir
         Page updatedPage = pageRepository.save(page);
-        return PageMapper.INSTANCE.toPageDto(updatedPage);
+        return pageMapper.toPageDto(updatedPage);
     }
 
     @Override
@@ -51,6 +54,6 @@ public class PageService implements IPageService {
     public DtoPage pageFindBySlug(String slug) {
         Page pageDB = pageRepository.findBySlug(slug)
                 .orElseThrow(() -> new EntityNotFoundException("Page not found with slug: " + slug));
-        return PageMapper.INSTANCE.toPageDto(pageDB);
+        return pageMapper.toPageDto(pageDB);
     }
 }

@@ -26,6 +26,8 @@ public class PageComponentService implements IPageComponentService {
     private PageRepository pageRepository;
     @Autowired
     private ComponentRepository componentRepository;
+    @Autowired
+    private PageComponentMapper pageComponentMapper;
 
     @Override
     public DtoPageComponent addComponentToPage(DtoPageComponent dtoPageComponent) {
@@ -41,10 +43,10 @@ public class PageComponentService implements IPageComponentService {
         entity.setOrderIndex(dtoPageComponent.getOrderIndex());
 
         PageComponentId id = new PageComponentId(dtoPageComponent.getPageId(), dtoPageComponent.getComponentId());
-        entity.setId(id);
+        entity.setPageComponentId(id);
 
         PageComponent savedEntity = pageComponentRepository.save(entity);
-        return PageComponentMapper.INSTANCE.toPageComponentDto(savedEntity);
+        return pageComponentMapper.toPageComponentDto(savedEntity);
     }
 
     @Override
@@ -72,6 +74,6 @@ public class PageComponentService implements IPageComponentService {
     @Override
     public List<DtoPageComponent> getComponentsOfPage(Long pageId) {
         List<PageComponent> pageComponents = pageComponentRepository.findByPageId(pageId);
-        return PageComponentMapper.INSTANCE.toPageComponentDtoList(pageComponents);
+        return pageComponentMapper.toPageComponentDtoList(pageComponents);
     }
 }

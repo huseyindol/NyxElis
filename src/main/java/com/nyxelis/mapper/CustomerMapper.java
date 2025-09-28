@@ -5,9 +5,7 @@ import com.nyxelis.entity.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring", uses = {CustomerMapper.class})
 public interface CustomerMapper {
-    CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
-
     DtoCustomer toCustomerDto(Customer customer);
 }
