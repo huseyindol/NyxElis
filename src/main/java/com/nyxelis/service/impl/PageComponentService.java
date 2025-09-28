@@ -43,7 +43,7 @@ public class PageComponentService implements IPageComponentService {
         entity.setOrderIndex(dtoPageComponent.getOrderIndex());
 
         PageComponentId id = new PageComponentId(dtoPageComponent.getPageId(), dtoPageComponent.getComponentId());
-        entity.setPageComponentId(id);
+        entity.setId(id);
 
         PageComponent savedEntity = pageComponentRepository.save(entity);
         return pageComponentMapper.toPageComponentDto(savedEntity);

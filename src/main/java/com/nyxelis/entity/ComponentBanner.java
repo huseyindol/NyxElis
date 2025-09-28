@@ -16,7 +16,7 @@ import lombok.Setter;
 public class ComponentBanner extends BaseEntity {
 
     @EmbeddedId
-    private ComponentBannerId componentBannerId = new ComponentBannerId();
+    private ComponentBannerId id = new ComponentBannerId();
 
     @ManyToOne
     @MapsId("componentId")

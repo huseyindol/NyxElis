@@ -16,7 +16,7 @@ import lombok.Setter;
 public class PageComponent extends BaseEntity {
 
     @EmbeddedId
-    private PageComponentId pageComponentId = new PageComponentId();
+    private PageComponentId id = new PageComponentId();
 
     @ManyToOne
     @MapsId("pageId")

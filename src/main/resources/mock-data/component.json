@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Component 1",
+    "title": "Component 1 Başlık",
+    "content": "Component 1 İçerik",
+    "type": "BANNER",
+    "isActive": true,
+    "orderIndex": 1,
+    "banners": [
+      {
+        "title": "Banner Detay 1",
+        "description": "Banner Detay 1 Açıklama",
+        "imageUrl": "/images/banner1.png",
+        "link": "https://example.com/banner1",
+        "altText": "Banner 1 Açıklama",
+        "isActive": true
+      },
+      {
+        "title": "Banner Detay 2",
+        "description": "Banner Detay 2 Açıklama",
+        "imageUrl": "/images/banner2.png",
+        "link": "https://example.com/banner2",
+        "altText": "Banner 2 Açıklama",
+        "isActive": true
+      }
+    ]
+  }
+]
