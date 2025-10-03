@@ -6,16 +6,11 @@ import com.nyxelis.dto.DtoBanner;
 import com.nyxelis.dto.DtoComponent;
 import com.nyxelis.dto.DtoPage;
 import com.nyxelis.dto.DtoSeoInfo;
-import com.nyxelis.entity.Banner;
-import com.nyxelis.entity.ComponentBanner;
-import com.nyxelis.entity.Page;
-import com.nyxelis.entity.SeoInfo;
+import com.nyxelis.entity.*;
 import com.nyxelis.entity.id.ComponentBannerId;
+import com.nyxelis.entity.id.PageComponentId;
 import com.nyxelis.enums.ComponentType;
-import com.nyxelis.repository.ComponentRepository;
-import com.nyxelis.repository.PageRepository;
-import com.nyxelis.repository.BannerRepository;
-import com.nyxelis.repository.ComponentBannerRepository;
+import com.nyxelis.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -35,6 +30,7 @@ public class DataInitializer implements CommandLineRunner {
     private final ComponentRepository componentRepository;
     private final BannerRepository bannerRepository;
     private final ComponentBannerRepository componentBannerRepository;
+    private final PageComponentRepository pageComponentRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -51,6 +47,14 @@ public class DataInitializer implements CommandLineRunner {
             log.info("Component Mock data initialization completed.");
         } else {
             log.info("Component Database already contains data, skipping initialization.");
+        }
+        if (pageRepository.count() > 0 && componentRepository.count() > 0 && pageComponentRepository.count() == 0) {
+            log.info("PageComponent Database is empty, initializing with mock data...");
+            loadMockPageComponentData();
+            log.info("PageComponent Mock data initialization completed.");
+        } else {
+            log.info("PageComponent Database already contains data or prerequisites not met, skipping initialization.");
+
         }
     }
 
@@ -114,6 +118,9 @@ public class DataInitializer implements CommandLineRunner {
             List<DtoComponent> componentList = loadComponentData();
 
             for (DtoComponent dtoComponent : componentList) {
+                System.out.println("Processing component: " + dtoComponent.getType());
+                System.out.println("Processing component: " + ComponentType.BANNER);
+
                 // Component entity için fully qualified name kullan
                 com.nyxelis.entity.Component component = new com.nyxelis.entity.Component();
                 component.setName(dtoComponent.getName());
@@ -183,4 +190,40 @@ public class DataInitializer implements CommandLineRunner {
         log.info("Loaded {} component records", componentList.size());
         return componentList;
     }
+
+    private void loadMockPageComponentData() {
+        try {
+
+            Long idNumber = 1L;
+            Page page = pageRepository.findById(idNumber).orElse(null);
+            com.nyxelis.entity.Component component = componentRepository.findById(idNumber).orElse(null);
+
+            if (page != null && component != null) {
+                PageComponent pageComponent = new PageComponent();
+
+                // Composite key oluştur
+                PageComponentId id = new PageComponentId();
+                id.setPageId(page.getId());
+                id.setComponentId(component.getId());
+                pageComponent.setId(id);
+
+                pageComponent.setPage(page);
+                pageComponent.setComponent(component);
+                pageComponent.setOrderIndex(1);
+
+                pageComponentRepository.save(pageComponent);
+                log.info("Successfully created page-component relationship for page: {} and component: {}",
+                        page.getTitle(), component.getName());
+            } else {
+                log.warn("Skipping PageComponent creation. Page or Component not found for IDs - Page ID: 1, " +
+                        "Component ID: 1"
+                );
+            }
+
+            log.info("Successfully loaded {} page-component relationships", 1);
+        } catch (Exception e) {
+            log.error("Error loading page-component mock data: ", e);
+        }
+    }
+
 }
