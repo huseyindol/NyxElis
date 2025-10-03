@@ -7,7 +7,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "seo_info")
+@Table(
+        name = "seo_info",
+        indexes = {
+                @Index(name = "idx_title", columnList = "title"),
+                @Index(name = "idx_canonical_url", columnList = "canonicalUrl")
+        }
+)
 @Getter
 @Setter
 @NoArgsConstructor
