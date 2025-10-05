@@ -4,13 +4,13 @@ import com.nyxelis.dto.DtoPost;
 import com.nyxelis.dto.DtoPostIU;
 
 public interface IPostService {
-    public DtoPost postFindById(Long id);
+    DtoPost postFindById(Long id);
 
-    public DtoPost postFindBySlug(String slug);
+    DtoPost postFindBySlug(String slug);
 
-    public DtoPost createPost(DtoPostIU dtoPost);
+    DtoPost createPost(DtoPostIU dtoPost);
 
-    public DtoPost updatePost(Long id, DtoPostIU dtoPost);
+    DtoPost updatePost(Long id, DtoPostIU dtoPost);
 
-    public void deletePost(Long id);
+    void deletePost(Long id);
 }
