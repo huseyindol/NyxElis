@@ -10,8 +10,8 @@ import lombok.Setter;
 @Table(
         name = "seo_info",
         indexes = {
-                @Index(name = "idx_title", columnList = "title"),
-                @Index(name = "idx_canonical_url", columnList = "canonicalUrl")
+                @Index(name = "id_seoinfo_title", columnList = "title"),
+                @Index(name = "id_seoinfo_canonical_url", columnList = "canonicalUrl")
         }
 )
 @Getter

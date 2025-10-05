@@ -13,8 +13,8 @@ import java.util.List;
 @Table(
         name = "pages",
         indexes = {
-                @Index(columnList = "slug", name = "idx_page_slug", unique = true),
-                @Index(name = "idx_active", columnList = "isActive")
+                @Index(columnList = "slug", name = "id_page_page_slug", unique = true),
+                @Index(name = "id_page_active", columnList = "isActive")
         },
         uniqueConstraints = {@UniqueConstraint(columnNames = {"slug"}, name = "uc_page_slug")}
 )

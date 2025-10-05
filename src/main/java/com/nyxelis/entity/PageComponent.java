@@ -11,12 +11,12 @@ import lombok.Setter;
 @Table(
         name = "page_components",
         indexes = {
-                @Index(name = "idx_page_id", columnList = "page_id"),
-                @Index(name = "idx_component_id", columnList = "component_id"),
-                @Index(name = "idx_order", columnList = "orderIndex"),
+                @Index(name = "id_page_comp_page_id", columnList = "page_id"),
+                @Index(name = "id_page_comp_component_id", columnList = "component_id"),
+                @Index(name = "id_page_comp_order", columnList = "orderIndex"),
 
                 // Composite - sıralama sorguları için
-                @Index(name = "idx_page_order", columnList = "page_id, orderIndex")
+                @Index(name = "id_page_comp_page_order", columnList = "page_id, orderIndex")
         }
 )
 @Getter

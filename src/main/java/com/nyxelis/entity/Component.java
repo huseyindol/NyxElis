@@ -16,11 +16,11 @@ import java.util.List;
         name = "components",
         indexes = {
                 // Tek kolonlu indexler
-                @Index(name = "idx_name", columnList = "name"),
-                @Index(name = "idx_type", columnList = "type"),
+                @Index(name = "id_component_name", columnList = "name"),
+                @Index(name = "id_component_type", columnList = "type"),
 
-                @Index(name = "idx_type_active", columnList = "type, isActive"),
-                @Index(name = "idx_type_name", columnList = "type, name")
+                @Index(name = "id_component_type_active", columnList = "type, isActive"),
+                @Index(name = "id_component_type_name", columnList = "type, name")
         }
 )
 @Getter

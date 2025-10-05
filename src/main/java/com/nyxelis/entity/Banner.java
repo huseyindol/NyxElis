@@ -13,8 +13,8 @@ import java.util.List;
 @Table(
         name = "banners",
         indexes = {
-                @Index(name = "idx_title", columnList = "title"),
-                @Index(name = "idx_active", columnList = "isActive")
+                @Index(name = "id_banner_title", columnList = "title"),
+                @Index(name = "id_banner_active", columnList = "isActive")
         }
 )
 @Getter
