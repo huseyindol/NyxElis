@@ -5,6 +5,8 @@ import com.nyxelis.dto.DtoPostIU;
 import com.nyxelis.entity.RootEntityResponse;
 
 public interface IPostController {
+    RootEntityResponse<DtoPost> postFindById(Long id);
+
     RootEntityResponse<DtoPost> postFindBySlug(String slug);
 
     RootEntityResponse<DtoPost> createPost(DtoPostIU dtoPost);

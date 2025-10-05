@@ -9,7 +9,6 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring")
 public interface PostMapper {
     DtoPost toPostDto(Post post);
-    Post toPostEntity(DtoPost dtoPost);
     Post toPostIUEntity(DtoPostIU dtoPostIU);
     void updatePostEntityFromDto(DtoPostIU dtoPost, @MappingTarget Post post);
 }
