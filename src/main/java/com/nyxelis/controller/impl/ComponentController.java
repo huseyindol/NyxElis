@@ -21,33 +21,33 @@ public class ComponentController implements IComponentController {
     @Autowired
     private IComponentService componentService;
 
-    @PostMapping("/create")
     @Override
+    @PostMapping("/create")
     public RootEntityResponse<DtoComponent> createComponent(@RequestBody DtoComponent dtoComponent) {
         return ok(componentService.createComponent(dtoComponent));
     }
 
-    @PostMapping("/update/{id}")
     @Override
-    public RootEntityResponse<DtoComponent> updateComponent(@PathVariable(name = "id") Long id,
-                                                           @RequestBody DtoComponent dtoComponent) {
+    @PostMapping("/update/{id}")
+    public RootEntityResponse<DtoComponent> updateComponent(@PathVariable(value = "id") Long id,
+                                                            @RequestBody DtoComponent dtoComponent) {
         return ok(componentService.updateComponent(id, dtoComponent));
     }
 
-    @DeleteMapping("/delete/{id}")
     @Override
-    public void deleteComponent(@PathVariable(name = "id") Long id) {
+    @DeleteMapping("/delete/{id}")
+    public void deleteComponent(@PathVariable(value = "id") Long id) {
         componentService.deleteComponent(id);
     }
 
-    @GetMapping("/{id}")
     @Override
-    public RootEntityResponse<DtoComponent> getComponentById(@PathVariable(name = "id") Long id) {
+    @GetMapping("/{id}")
+    public RootEntityResponse<DtoComponent> getComponentById(@PathVariable(value = "id") Long id) {
         return ok(componentService.getComponentById(id));
     }
 
-    @GetMapping("/byType/{componentType}")
     @Override
+    @GetMapping("/byType/{componentType}")
     public RootEntityResponse<List<DtoComponent>> getComponentsByComponentType(@PathVariable ComponentType componentType) {
         return ok(componentService.getComponentsByComponentType(componentType));
     }

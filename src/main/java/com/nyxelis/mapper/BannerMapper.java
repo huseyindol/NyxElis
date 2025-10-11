@@ -1,9 +1,12 @@
 package com.nyxelis.mapper;
 
 import com.nyxelis.dto.DtoBanner;
+import com.nyxelis.dto.DtoBannerIU;
+import com.nyxelis.entity.Banner;
 import com.nyxelis.entity.ComponentBanner;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -18,6 +21,14 @@ public interface BannerMapper {
     @Mapping(source = "banner.isActive", target = "isActive")
     @Mapping(source = "orderIndex", target = "orderIndex")
     DtoBanner componentBannerToBannerDto(ComponentBanner componentBanner);
+
+    DtoBanner toBannerDto(Banner banner);
+
+    DtoBannerIU toBannerUIDto(Banner banner);
+
+    Banner toBannerEntity(DtoBannerIU dtoBanner);
+
+    void updateBannerEntityFromDto(DtoBannerIU dtoBanner, @MappingTarget Banner banner);
 
     List<DtoBanner> componentBannersToBannerDtos(List<ComponentBanner> componentBanners);
 }

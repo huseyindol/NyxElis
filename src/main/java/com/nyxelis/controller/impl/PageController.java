@@ -16,26 +16,26 @@ public class PageController extends BaseController implements IPageController {
     @Autowired
     private IPageService pageService;
 
-    @GetMapping("/{slug}")
     @Override
+    @GetMapping("/{slug}")
     public RootEntityResponse<DtoPage> pageFindBySlug(@PathVariable(value = "slug") String slug) {
         return ok(pageService.pageFindBySlug(slug));
     }
 
-    @PostMapping("/create")
     @Override
+    @PostMapping("/create")
     public RootEntityResponse<DtoPage> createPage(@RequestBody DtoPage dtoPage) {
         return ok(pageService.createPage(dtoPage));
     }
 
-    @PostMapping("/update/{id}")
     @Override
+    @PostMapping("/update/{id}")
     public RootEntityResponse<DtoPage> updatePage(@PathVariable(value = "id") Long id, @RequestBody DtoPage dtoPage) {
         return ok(pageService.updatePage(id, dtoPage));
     }
 
-    @DeleteMapping("/delete/{id}")
     @Override
+    @DeleteMapping("/delete/{id}")
     public void deletePage(@PathVariable(value = "id") Long id) {
         pageService.deletePage(id);
     }

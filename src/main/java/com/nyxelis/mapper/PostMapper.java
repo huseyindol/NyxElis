@@ -10,5 +10,6 @@ import org.mapstruct.MappingTarget;
 public interface PostMapper {
     DtoPost toPostDto(Post post);
     Post toPostIUEntity(DtoPostIU dtoPostIU);
+
     void updatePostEntityFromDto(DtoPostIU dtoPost, @MappingTarget Post post);
 }

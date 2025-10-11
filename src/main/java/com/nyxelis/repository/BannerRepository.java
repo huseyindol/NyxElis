@@ -1,8 +1,7 @@
 package com.nyxelis.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.nyxelis.entity.Banner;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BannerRepository extends JpaRepository<Banner, Long> {
 

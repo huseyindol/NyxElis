@@ -9,13 +9,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DtoBanner {
-    private Long id;
+public class DtoBannerIU {
     private String title;
     private String description;
     private String imageUrl;
     private String link;
     private String altText;
     private Boolean isActive;
-    private Integer orderIndex; // ComponentBanner'dan gelecek
 }

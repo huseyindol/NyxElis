@@ -15,14 +15,14 @@ public class CustomerController implements ICustomerController {
     @Autowired
     private ICustomerService customerService;
 
-    @GetMapping("/{id}")
     @Override
+    @GetMapping("/{id}")
     public DtoCustomer findById(@PathVariable(value = "id") Long id) {
         return customerService.findById(id);
     }
 
-    @DeleteMapping("/delete/{id}")
     @Override
+    @DeleteMapping("/delete/{id}")
     public void removeById(@PathVariable(value = "id") Long id) {
         customerService.removeById(id);
     }
