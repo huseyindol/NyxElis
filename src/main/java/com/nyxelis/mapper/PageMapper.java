@@ -6,12 +6,12 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring", uses = { PageComponentMapper.class })
+@Mapper(componentModel = "spring", uses = {PageComponentMapper.class})
 public interface PageMapper {
-    @Mapping(source = "pageComponents", target = "pageComponents")
-    DtoPage toPageDto(Page page);
+  @Mapping(source = "pageComponents", target = "pageComponents")
+  DtoPage toPageDto(Page page);
 
-    Page toPageEntity(DtoPage dtoPage);
+  Page toPageEntity(DtoPage dtoPage);
 
-    void updatePageEntityFromDto(DtoPage dtoPage, @MappingTarget Page page);
+  void updatePageEntityFromDto(DtoPage dtoPage, @MappingTarget Page page);
 }

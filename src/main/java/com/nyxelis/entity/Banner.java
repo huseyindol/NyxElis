@@ -11,27 +11,28 @@ import java.util.List;
 
 @Entity
 @Table(
-        name = "banners",
-        indexes = {
-                @Index(name = "id_banner_title", columnList = "title"),
-                @Index(name = "id_banner_active", columnList = "isActive")
-        }
+  name = "banners",
+  indexes = {
+    @Index(name = "id_banner_title", columnList = "title"),
+    @Index(name = "id_banner_active", columnList = "isActive")
+  }
 )
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Banner {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
-    private String description;
-    private String imageUrl;
-    private String link;
-    private String altText;
-    private Boolean isActive;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String title;
+  private String description;
+  private String imageUrl;
+  private String link;
+  private String altText;
+  private Boolean isActive;
+  private Integer orderDisplay;
 
-    @OneToMany(mappedBy = "banner", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ComponentBanner> componentBanners = new ArrayList<>();
+  @OneToMany(mappedBy = "banner", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<ComponentBanner> componentBanners = new ArrayList<>();
 }

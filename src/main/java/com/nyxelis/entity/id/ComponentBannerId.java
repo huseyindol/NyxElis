@@ -16,9 +16,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class ComponentBannerId implements Serializable {
 
-    @Column(name = "component_id")
-    private Long componentId;
+  @Column(name = "component_id")
+  private Long componentId;
 
-    @Column(name = "banner_id")
-    private Long bannerId;
+  @Column(name = "banner_id")
+  private Long bannerId;
 }
+

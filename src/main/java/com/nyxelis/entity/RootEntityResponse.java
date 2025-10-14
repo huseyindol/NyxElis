@@ -10,23 +10,23 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RootEntityResponse<T> {
-    private boolean result;
-    private String message;
-    private T data;
+  private boolean result;
+  private String message;
+  private T data;
 
-    public static <T> RootEntityResponse<T> ok(T data){
-        RootEntityResponse<T> response = new RootEntityResponse<>();
-        response.setResult(true);
-        response.setMessage(null);
-        response.setData(data);
-        return response;
-    }
+  public static <T> RootEntityResponse<T> ok(T data) {
+    RootEntityResponse<T> response = new RootEntityResponse<>();
+    response.setResult(true);
+    response.setMessage(null);
+    response.setData(data);
+    return response;
+  }
 
-    public static <T> RootEntityResponse<T> error(String message){
-        RootEntityResponse<T> response = new RootEntityResponse<>();
-        response.setResult(false);
-        response.setMessage(message);
-        response.setData(null);
-        return response;
-    }
+  public static <T> RootEntityResponse<T> error(String message) {
+    RootEntityResponse<T> response = new RootEntityResponse<>();
+    response.setResult(false);
+    response.setMessage(message);
+    response.setData(null);
+    return response;
+  }
 }

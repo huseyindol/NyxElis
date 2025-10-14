@@ -4,6 +4,6 @@ import lombok.Getter;
 
 @Getter
 public enum ComponentType {
-    WIDGET,
-    BANNER
+  WIDGET,
+  BANNER
 }

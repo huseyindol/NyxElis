@@ -10,10 +10,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DtoPost {
-    private Long id;
-    private String title;
-    private String content;
-    private String slug;
-    private Boolean isActive;
-    private DtoCustomer author; // Assuming you have a DtoCustomer class for the author
+  private Long id;
+  private String title;
+  private String content;
+  private String slug;
+  private Boolean isActive;
+  private DtoCustomer author; // Assuming you have a DtoCustomer class for the author
+  private Integer orderIndex;
 }

@@ -13,30 +13,30 @@ import java.util.Optional;
 @Service
 public class CustomerService implements ICustomerService {
 
-    @Autowired
-    private CustomerRepository customerRepository;
+  @Autowired
+  private CustomerRepository customerRepository;
 
-    @Autowired
-    private CustomerMapper customerMapper;
+  @Autowired
+  private CustomerMapper customerMapper;
 
-    @Override
-    public DtoCustomer findById(Long id) {
-        Optional<Customer> optionalCustomer = customerRepository.findById(id);
-        if (optionalCustomer.isEmpty()) {
-            return null; // or throw an exception, depending on your error handling strategy
-        }
-        Customer customerDb = optionalCustomer.get();
-        DtoCustomer dtoCustomer = customerMapper.toCustomerDto(customerDb);
-        return dtoCustomer;
+  @Override
+  public DtoCustomer findById(Long id) {
+    Optional<Customer> optionalCustomer = customerRepository.findById(id);
+    if (optionalCustomer.isEmpty()) {
+      return null; // or throw an exception, depending on your error handling strategy
     }
+    Customer customerDb = optionalCustomer.get();
+    DtoCustomer dtoCustomer = customerMapper.toCustomerDto(customerDb);
+    return dtoCustomer;
+  }
 
-    @Override
-    public void removeById(Long id) {
-        Optional<Customer> optionalCustomer = customerRepository.findById(id);
-        if (optionalCustomer.isEmpty()) {
-            return; // or throw an exception, depending on your error handling strategy
-        }
-        Customer customerDb = optionalCustomer.get();
-        customerRepository.delete(customerDb);
+  @Override
+  public void removeById(Long id) {
+    Optional<Customer> optionalCustomer = customerRepository.findById(id);
+    if (optionalCustomer.isEmpty()) {
+      return; // or throw an exception, depending on your error handling strategy
     }
+    Customer customerDb = optionalCustomer.get();
+    customerRepository.delete(customerDb);
+  }
 }

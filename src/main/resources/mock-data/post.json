@@ -1,0 +1,18 @@
+[
+  {
+    "title": "post 1",
+    "content": "post 1 content",
+    "slug": "post-1",
+    "isActive": true,
+    "authorId": 1,
+    "orderIndex": 1
+  },
+  {
+    "title": "post 2",
+    "content": "post 2 content",
+    "slug": "post-2",
+    "isActive": true,
+    "authorId": 2,
+    "orderIndex": 2
+  }
+]

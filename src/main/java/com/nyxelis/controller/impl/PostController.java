@@ -13,36 +13,36 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/post")
 @Tag(name = "Post Services")
 public class PostController extends BaseController implements IPostController {
-    @Autowired
-    private IPostService postService;
+  @Autowired
+  private IPostService postService;
 
-    @Override
-    @GetMapping("/{id}")
-    public RootEntityResponse<DtoPost> postFindById(@PathVariable(value = "id") Long id) {
-        return ok(postService.postFindById(id));
-    }
+  @Override
+  @GetMapping("/{id}")
+  public RootEntityResponse<DtoPost> postFindById(@PathVariable(value = "id") Long id) {
+    return ok(postService.postFindById(id));
+  }
 
-    @Override
-    @GetMapping("/{slug}")
-    public RootEntityResponse<DtoPost> postFindBySlug(@PathVariable(value = "slug") String slug) {
-        return ok(postService.postFindBySlug(slug));
-    }
+  @Override
+  @GetMapping("/{slug}")
+  public RootEntityResponse<DtoPost> postFindBySlug(@PathVariable(value = "slug") String slug) {
+    return ok(postService.postFindBySlug(slug));
+  }
 
-    @Override
-    @PostMapping("/create")
-    public RootEntityResponse<DtoPost> createPost(DtoPostIU dtoPost) {
-        return ok(postService.createPost(dtoPost));
-    }
+  @Override
+  @PostMapping("/create")
+  public RootEntityResponse<DtoPost> createPost(@RequestBody DtoPostIU dtoPost) {
+    return ok(postService.createPost(dtoPost));
+  }
 
-    @Override
-    @PostMapping("/update/{id}")
-    public RootEntityResponse<DtoPost> updatePost(@PathVariable(value = "id") Long id, DtoPostIU dtoPost) {
-        return ok(postService.updatePost(id, dtoPost));
-    }
+  @Override
+  @PutMapping("/{id}")
+  public RootEntityResponse<DtoPost> updatePost(@PathVariable(value = "id") Long id, @RequestBody DtoPostIU dtoPost) {
+    return ok(postService.updatePost(id, dtoPost));
+  }
 
-    @Override
-    @DeleteMapping("/delete/{id}")
-    public void deletePost(Long id) {
-        postService.deletePost(id);
-    }
+  @Override
+  @DeleteMapping("/{id}")
+  public void deletePost(Long id) {
+    postService.deletePost(id);
+  }
 }

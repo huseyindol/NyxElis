@@ -5,13 +5,13 @@ import com.nyxelis.dto.DtoPostIU;
 import com.nyxelis.entity.RootEntityResponse;
 
 public interface IPostController {
-    RootEntityResponse<DtoPost> postFindById(Long id);
+  RootEntityResponse<DtoPost> postFindById(Long id);
 
-    RootEntityResponse<DtoPost> postFindBySlug(String slug);
+  RootEntityResponse<DtoPost> postFindBySlug(String slug);
 
-    RootEntityResponse<DtoPost> createPost(DtoPostIU dtoPost);
+  RootEntityResponse<DtoPost> createPost(DtoPostIU dtoPost);
 
-    RootEntityResponse<DtoPost> updatePost(Long id, DtoPostIU dtoPost);
+  RootEntityResponse<DtoPost> updatePost(Long id, DtoPostIU dtoPost);
 
-    void deletePost(Long id);
+  void deletePost(Long id);
 }

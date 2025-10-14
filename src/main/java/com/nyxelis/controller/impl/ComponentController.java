@@ -18,44 +18,44 @@ import static com.nyxelis.entity.RootEntityResponse.ok;
 @Tag(name = "Component Services")
 public class ComponentController implements IComponentController {
 
-    @Autowired
-    private IComponentService componentService;
+  @Autowired
+  private IComponentService componentService;
 
-    @Override
-    @PostMapping("/create")
-    public RootEntityResponse<DtoComponent> createComponent(@RequestBody DtoComponent dtoComponent) {
-        return ok(componentService.createComponent(dtoComponent));
-    }
+  @Override
+  @PostMapping("/create")
+  public RootEntityResponse<DtoComponent> createComponent(@RequestBody DtoComponent dtoComponent) {
+    return ok(componentService.createComponent(dtoComponent));
+  }
 
-    @Override
-    @PostMapping("/update/{id}")
-    public RootEntityResponse<DtoComponent> updateComponent(@PathVariable(value = "id") Long id,
-                                                            @RequestBody DtoComponent dtoComponent) {
-        return ok(componentService.updateComponent(id, dtoComponent));
-    }
+  @Override
+  @PutMapping("/{id}")
+  public RootEntityResponse<DtoComponent> updateComponent(@PathVariable(value = "id") Long id,
+                                                          @RequestBody DtoComponent dtoComponent) {
+    return ok(componentService.updateComponent(id, dtoComponent));
+  }
 
-    @Override
-    @DeleteMapping("/delete/{id}")
-    public void deleteComponent(@PathVariable(value = "id") Long id) {
-        componentService.deleteComponent(id);
-    }
+  @Override
+  @DeleteMapping("/{id}")
+  public void deleteComponent(@PathVariable(value = "id") Long id) {
+    componentService.deleteComponent(id);
+  }
 
-    @Override
-    @GetMapping("/{id}")
-    public RootEntityResponse<DtoComponent> getComponentById(@PathVariable(value = "id") Long id) {
-        return ok(componentService.getComponentById(id));
-    }
+  @Override
+  @GetMapping("/{id}")
+  public RootEntityResponse<DtoComponent> getComponentById(@PathVariable(value = "id") Long id) {
+    return ok(componentService.getComponentById(id));
+  }
 
-    @Override
-    @GetMapping("/byType/{componentType}")
-    public RootEntityResponse<List<DtoComponent>> getComponentsByComponentType(@PathVariable ComponentType componentType) {
-        return ok(componentService.getComponentsByComponentType(componentType));
-    }
+  @Override
+  @GetMapping("/byType/{componentType}")
+  public RootEntityResponse<List<DtoComponent>> getComponentsByComponentType(@PathVariable ComponentType componentType) {
+    return ok(componentService.getComponentsByComponentType(componentType));
+  }
 
-    // @GetMapping("/byPageId/{pageId}")
-    // @Override
-    // public List<DtoComponent> getComponentsByPageId(@PathVariable Long pageId)
-    // {
-    // return componentService.getComponentsByPageId(pageId);
-    // }
+  // @GetMapping("/byPageId/{pageId}")
+  // @Override
+  // public List<DtoComponent> getComponentsByPageId(@PathVariable Long pageId)
+  // {
+  // return componentService.getComponentsByPageId(pageId);
+  // }
 }

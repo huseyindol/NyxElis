@@ -13,12 +13,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DtoComponent {
-    private Long id;
-    private String name;
-    private String title;
-    private String content;
-    private ComponentType type;
-    private Boolean isActive;
-    private Integer orderIndex; // Component'in sayfa içindeki sırası
-    private List<DtoBanner> banners; // Component içindeki banner'lar
+  private Long id;
+  private String name;
+  private String title;
+  private String content;
+  private ComponentType type;
+  private Boolean isActive;
+  private Integer orderIndex; // Component'in sayfa içindeki sırası
+  private List<DtoBanner> banners; // Component içindeki banner'lar
 }

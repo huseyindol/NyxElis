@@ -7,9 +7,13 @@ import com.nyxelis.enums.ComponentType;
 import java.util.List;
 
 public interface IComponentController {
-    public RootEntityResponse<DtoComponent> createComponent(DtoComponent dtoComponent);
-    public RootEntityResponse<DtoComponent> updateComponent(Long id, DtoComponent dtoComponent);
-    public void deleteComponent(Long id);
-    public RootEntityResponse<DtoComponent> getComponentById(Long id);
-    public RootEntityResponse<List<DtoComponent>> getComponentsByComponentType(ComponentType componentType);
+  RootEntityResponse<DtoComponent> createComponent(DtoComponent dtoComponent);
+
+  RootEntityResponse<DtoComponent> updateComponent(Long id, DtoComponent dtoComponent);
+
+  void deleteComponent(Long id);
+
+  RootEntityResponse<DtoComponent> getComponentById(Long id);
+
+  RootEntityResponse<List<DtoComponent>> getComponentsByComponentType(ComponentType componentType);
 }

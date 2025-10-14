@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Customer Services")
 public class CustomerController implements ICustomerController {
 
-    @Autowired
-    private ICustomerService customerService;
+  @Autowired
+  private ICustomerService customerService;
 
-    @Override
-    @GetMapping("/{id}")
-    public DtoCustomer findById(@PathVariable(value = "id") Long id) {
-        return customerService.findById(id);
-    }
+  @Override
+  @GetMapping("/{id}")
+  public DtoCustomer findById(@PathVariable(value = "id") Long id) {
+    return customerService.findById(id);
+  }
 
-    @Override
-    @DeleteMapping("/delete/{id}")
-    public void removeById(@PathVariable(value = "id") Long id) {
-        customerService.removeById(id);
-    }
+  @Override
+  @DeleteMapping("/{id}")
+  public void removeById(@PathVariable(value = "id") Long id) {
+    customerService.removeById(id);
+  }
 }

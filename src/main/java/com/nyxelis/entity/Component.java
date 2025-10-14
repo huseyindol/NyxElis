@@ -13,15 +13,15 @@ import java.util.List;
 
 @Entity
 @Table(
-        name = "components",
-        indexes = {
-                // Tek kolonlu indexler
-                @Index(name = "id_component_name", columnList = "name"),
-                @Index(name = "id_component_type", columnList = "type"),
+  name = "components",
+  indexes = {
+    // Tek kolonlu indexler
+    @Index(name = "id_component_name", columnList = "name"),
+    @Index(name = "id_component_type", columnList = "type"),
 
-                @Index(name = "id_component_type_active", columnList = "type, isActive"),
-                @Index(name = "id_component_type_name", columnList = "type, name")
-        }
+    @Index(name = "id_component_type_active", columnList = "type, isActive"),
+    @Index(name = "id_component_type_name", columnList = "type, name")
+  }
 )
 @Getter
 @Setter
@@ -29,25 +29,25 @@ import java.util.List;
 @AllArgsConstructor
 public class Component extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String title;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String name;
+  private String title;
 
-    @Column(columnDefinition = "TEXT")
-    private String content;
+  @Column(columnDefinition = "TEXT")
+  private String content;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
-    @Pattern(regexp = "WIDGET|BANNER", message = "Type must be either 'WIDGET' or 'BANNER'")
-    private ComponentType type;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "type", nullable = false)
+  @Pattern(regexp = "WIDGET|BANNER", message = "Type must be either 'WIDGET' or 'BANNER'")
+  private ComponentType type;
 
-    private Boolean isActive;
+  private Boolean isActive;
 
-    @OneToMany(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PageComponent> pageComponents = new ArrayList<>();
+  @OneToMany(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<PageComponent> pageComponents = new ArrayList<>();
 
-    @OneToMany(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ComponentBanner> componentBanners = new ArrayList<>();
+  @OneToMany(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<ComponentBanner> componentBanners = new ArrayList<>();
 }

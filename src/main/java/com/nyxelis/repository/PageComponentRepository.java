@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface PageComponentRepository extends JpaRepository<PageComponent, PageComponentId> {
 
-    List<PageComponent> findByPageId(Long pageId);
+  List<PageComponent> findByPageId(Long pageId);
 }

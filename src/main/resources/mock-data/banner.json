@@ -1,0 +1,20 @@
+[
+  {
+    "altText": "Banner 1 Açıklama",
+    "description": "Banner Detay 1 Açıklama",
+    "imageUrl": "/images/banner1.png",
+    "isActive": true,
+    "link": "https://example.com/banner1",
+    "title": "Banner Detay 1",
+    "orderDisplay": 1
+  },
+  {
+    "altText": "Banner 2 Açıklama",
+    "description": "Banner Detay 2 Açıklama",
+    "imageUrl": "/images/banner2.png",
+    "isActive": true,
+    "link": "https://example.com/banner2",
+    "title": "Banner Detay 2",
+    "orderDisplay": 2
+  }
+]

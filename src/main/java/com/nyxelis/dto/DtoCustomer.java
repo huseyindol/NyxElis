@@ -10,9 +10,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DtoCustomer {
-    private String name;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private DtoCustomerToCustomerDetail details;
+  private String name;
+  private String email;
+  private String firstName;
+  private String lastName;
+  private DtoCustomerToCustomerDetail details;
 }

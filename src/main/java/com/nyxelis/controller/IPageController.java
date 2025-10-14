@@ -4,11 +4,11 @@ import com.nyxelis.dto.DtoPage;
 import com.nyxelis.entity.RootEntityResponse;
 
 public interface IPageController {
-    RootEntityResponse<DtoPage> pageFindBySlug(String slug);
+  RootEntityResponse<DtoPage> pageFindBySlug(String slug);
 
-    RootEntityResponse<DtoPage> createPage(DtoPage dtoPage);
+  RootEntityResponse<DtoPage> createPage(DtoPage dtoPage);
 
-    RootEntityResponse<DtoPage> updatePage(Long id, DtoPage dtoPage);
+  RootEntityResponse<DtoPage> updatePage(Long id, DtoPage dtoPage);
 
-    void deletePage(Long id);
+  void deletePage(Long id);
 }

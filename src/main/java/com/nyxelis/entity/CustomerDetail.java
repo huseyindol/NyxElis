@@ -17,12 +17,12 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CustomerDetail {
 
-    @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+  private Long id;
 
-    private String address;
+  private String address;
 
-    private String phoneNumber;
+  private String phoneNumber;
 
 }

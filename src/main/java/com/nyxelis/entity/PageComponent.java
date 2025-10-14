@@ -9,15 +9,15 @@ import lombok.Setter;
 
 @Entity
 @Table(
-        name = "page_components",
-        indexes = {
-                @Index(name = "id_page_comp_page_id", columnList = "page_id"),
-                @Index(name = "id_page_comp_component_id", columnList = "component_id"),
-                @Index(name = "id_page_comp_order", columnList = "orderIndex"),
+  name = "page_components",
+  indexes = {
+    @Index(name = "id_page_comp_page_id", columnList = "page_id"),
+    @Index(name = "id_page_comp_component_id", columnList = "component_id"),
+    @Index(name = "id_page_comp_order", columnList = "orderIndex"),
 
-                // Composite - sıralama sorguları için
-                @Index(name = "id_page_comp_page_order", columnList = "page_id, orderIndex")
-        }
+    // Composite - sıralama sorguları için
+    @Index(name = "id_page_comp_page_order", columnList = "page_id, orderIndex")
+  }
 )
 @Getter
 @Setter
@@ -25,18 +25,19 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PageComponent extends BaseEntity {
 
-    @EmbeddedId
-    private PageComponentId id = new PageComponentId();
+  @EmbeddedId
+  private PageComponentId id = new PageComponentId();
 
-    @ManyToOne
-    @MapsId("pageId")
-    @JoinColumn(name = "page_id")
-    private Page page;
+  @ManyToOne
+  @MapsId("pageId")
+  @JoinColumn(name = "page_id")
+  private Page page;
 
-    @ManyToOne
-    @MapsId("componentId")
-    @JoinColumn(name = "component_id")
-    private Component component;
+  @ManyToOne
+  @MapsId("componentId")
+  @JoinColumn(name = "component_id")
+  private Component component;
 
-    private Integer orderIndex;
+  private Integer orderIndex;
+
 }

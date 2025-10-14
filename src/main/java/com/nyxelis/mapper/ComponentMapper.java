@@ -8,14 +8,14 @@ import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = { BannerMapper.class })
+@Mapper(componentModel = "spring", uses = {BannerMapper.class})
 public interface ComponentMapper {
-    @Mapping(source = "componentBanners", target = "banners")
-    DtoComponent toComponentDto(Component component);
+  @Mapping(source = "componentBanners", target = "banners")
+  DtoComponent toComponentDto(Component component);
 
-    Component toComponentEntity(DtoComponent dtoComponent);
+  Component toComponentEntity(DtoComponent dtoComponent);
 
-    void updateComponentEntityFromDto(DtoComponent dtoComponent, @MappingTarget Component component);
+  void updateComponentEntityFromDto(DtoComponent dtoComponent, @MappingTarget Component component);
 
-    List<DtoComponent> toComponentDtoList(List<Component> components);
+  List<DtoComponent> toComponentDtoList(List<Component> components);
 }

@@ -12,23 +12,24 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface BannerMapper {
-    @Mapping(source = "banner.id", target = "id")
-    @Mapping(source = "banner.title", target = "title")
-    @Mapping(source = "banner.description", target = "description")
-    @Mapping(source = "banner.imageUrl", target = "imageUrl")
-    @Mapping(source = "banner.link", target = "link")
-    @Mapping(source = "banner.altText", target = "altText")
-    @Mapping(source = "banner.isActive", target = "isActive")
-    @Mapping(source = "orderIndex", target = "orderIndex")
-    DtoBanner componentBannerToBannerDto(ComponentBanner componentBanner);
+  @Mapping(source = "banner.id", target = "id")
+  @Mapping(source = "banner.title", target = "title")
+  @Mapping(source = "banner.description", target = "description")
+  @Mapping(source = "banner.imageUrl", target = "imageUrl")
+  @Mapping(source = "banner.link", target = "link")
+  @Mapping(source = "banner.altText", target = "altText")
+  @Mapping(source = "banner.isActive", target = "isActive")
+  @Mapping(source = "banner.orderDisplay", target = "orderDisplay")
+  @Mapping(source = "orderIndex", target = "orderIndex")
+  DtoBanner componentBannerToBannerDto(ComponentBanner componentBanner);
 
-    DtoBanner toBannerDto(Banner banner);
+  DtoBanner toBannerDto(Banner banner);
 
-    DtoBannerIU toBannerUIDto(Banner banner);
+  DtoBannerIU toBannerUIDto(Banner banner);
 
-    Banner toBannerEntity(DtoBannerIU dtoBanner);
+  Banner toBannerEntity(DtoBannerIU dtoBanner);
 
-    void updateBannerEntityFromDto(DtoBannerIU dtoBanner, @MappingTarget Banner banner);
+  void updateBannerEntityFromDto(DtoBannerIU dtoBanner, @MappingTarget Banner banner);
 
-    List<DtoBanner> componentBannersToBannerDtos(List<ComponentBanner> componentBanners);
+  List<DtoBanner> componentBannersToBannerDtos(List<ComponentBanner> componentBanners);
 }

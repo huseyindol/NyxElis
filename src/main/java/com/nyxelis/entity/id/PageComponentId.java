@@ -2,7 +2,10 @@ package com.nyxelis.entity.id;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -13,9 +16,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class PageComponentId implements Serializable {
 
-    @Column(name = "page_id")
-    private Long pageId;
+  @Column(name = "page_id")
+  private Long pageId;
 
-    @Column(name = "component_id")
-    private Long componentId;
+  @Column(name = "component_id")
+  private Long componentId;
 }
+

@@ -4,11 +4,11 @@ import com.nyxelis.dto.DtoBanner;
 import com.nyxelis.dto.DtoBannerIU;
 
 public interface IBannerService {
-    public DtoBanner getBannerById(Long id);
+  DtoBanner getBannerById(Long id);
 
-    public DtoBannerIU createBanner(DtoBannerIU dtoBanner);
+  DtoBannerIU createBanner(DtoBannerIU dtoBanner);
 
-    public DtoBannerIU updateBanner(Long id, DtoBannerIU dtoBanner);
+  DtoBannerIU updateBanner(Long id, DtoBannerIU dtoBanner);
 
-    public void deleteBanner(Long id);
+  void deleteBanner(Long id);
 }

@@ -13,31 +13,31 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/banners")
 @Tag(name = "Banner Services")
 public class BannerController implements IBannerController {
-    @Autowired
-    private BannerService bannerService;
+  @Autowired
+  private BannerService bannerService;
 
-    @Override
-    @GetMapping("/{id}")
-    public RootEntityResponse<DtoBanner> getBannerById(@PathVariable(value = "id") Long id) {
-        return RootEntityResponse.ok(bannerService.getBannerById(id));
-    }
+  @Override
+  @GetMapping("/{id}")
+  public RootEntityResponse<DtoBanner> getBannerById(@PathVariable(value = "id") Long id) {
+    return RootEntityResponse.ok(bannerService.getBannerById(id));
+  }
 
-    @Override
-    @PostMapping("/create")
-    public RootEntityResponse<DtoBannerIU> createBanner(@RequestBody DtoBannerIU dtoBanner) {
-        return RootEntityResponse.ok(bannerService.createBanner(dtoBanner));
-    }
+  @Override
+  @PostMapping("/create")
+  public RootEntityResponse<DtoBannerIU> createBanner(@RequestBody DtoBannerIU dtoBanner) {
+    return RootEntityResponse.ok(bannerService.createBanner(dtoBanner));
+  }
 
-    @Override
-    @PostMapping("/update/{id}")
-    public RootEntityResponse<DtoBannerIU> updateBanner(@PathVariable(value = "id") Long id,
+  @Override
+  @PutMapping("/{id}")
+  public RootEntityResponse<DtoBannerIU> updateBanner(@PathVariable(value = "id") Long id,
                                                       @RequestBody DtoBannerIU dtoBanner) {
-        return RootEntityResponse.ok(bannerService.updateBanner(id, dtoBanner));
-    }
+    return RootEntityResponse.ok(bannerService.updateBanner(id, dtoBanner));
+  }
 
-    @Override
-    @DeleteMapping("/delete/{id}")
-    public void deleteBanner(@PathVariable(value = "id") Long id) {
-        bannerService.deleteBanner(id);
-    }
+  @Override
+  @DeleteMapping("/{id}")
+  public void deleteBanner(@PathVariable(value = "id") Long id) {
+    bannerService.deleteBanner(id);
+  }
 }

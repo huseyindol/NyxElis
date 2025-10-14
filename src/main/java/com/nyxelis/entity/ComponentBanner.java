@@ -9,15 +9,15 @@ import lombok.Setter;
 
 @Entity
 @Table(
-        name = "component_banners",
-        indexes = {
-                @Index(name = "id_comp_banner_component_id", columnList = "component_id"),
-                @Index(name = "id_comp_banner_banner_id", columnList = "banner_id"),
-                @Index(name = "id_comp_banner_order", columnList = "orderIndex"),
+  name = "component_banners",
+  indexes = {
+    @Index(name = "id_comp_banner_component_id", columnList = "component_id"),
+    @Index(name = "id_comp_banner_banner_id", columnList = "banner_id"),
+    @Index(name = "id_comp_banner_order", columnList = "orderIndex"),
 
-                // Composite - sıralama sorguları için
-                @Index(name = "id_comp_banner_banner_order", columnList = "banner_id, orderIndex")
-        }
+    // Composite - sıralama sorguları için
+    @Index(name = "id_comp_banner_banner_order", columnList = "banner_id, orderIndex")
+  }
 )
 @Getter
 @Setter
@@ -25,18 +25,18 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ComponentBanner extends BaseEntity {
 
-    @EmbeddedId
-    private ComponentBannerId id = new ComponentBannerId();
+  @EmbeddedId
+  private ComponentBannerId id = new ComponentBannerId();
 
-    @ManyToOne
-    @MapsId("componentId")
-    @JoinColumn(name = "component_id")
-    private Component component;
+  @ManyToOne
+  @MapsId("componentId")
+  @JoinColumn(name = "component_id")
+  private Component component;
 
-    @ManyToOne
-    @MapsId("bannerId")
-    @JoinColumn(name = "banner_id")
-    private Banner banner;
+  @ManyToOne
+  @MapsId("bannerId")
+  @JoinColumn(name = "banner_id")
+  private Banner banner;
 
-    private Integer orderIndex;
+  private Integer orderIndex;
 }

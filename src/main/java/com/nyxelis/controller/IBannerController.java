@@ -5,11 +5,11 @@ import com.nyxelis.dto.DtoBannerIU;
 import com.nyxelis.entity.RootEntityResponse;
 
 public interface IBannerController {
-    public RootEntityResponse<DtoBanner> getBannerById(Long id);
+  RootEntityResponse<DtoBanner> getBannerById(Long id);
 
-    public RootEntityResponse<DtoBannerIU> createBanner(DtoBannerIU dtoBanner);
+  RootEntityResponse<DtoBannerIU> createBanner(DtoBannerIU dtoBanner);
 
-    public RootEntityResponse<DtoBannerIU> updateBanner(Long id, DtoBannerIU dtoBanner);
+  RootEntityResponse<DtoBannerIU> updateBanner(Long id, DtoBannerIU dtoBanner);
 
-    public void deleteBanner(Long id);
+  void deleteBanner(Long id);
 }

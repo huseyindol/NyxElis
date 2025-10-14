@@ -1,12 +1,15 @@
 package com.nyxelis.controller;
 
 import com.nyxelis.dto.DtoPageComponent;
+import com.nyxelis.dto.DtoPageComponentIU;
 
 import java.util.List;
 
 public interface IPageComponentController {
-    public DtoPageComponent addComponentToPage(DtoPageComponent dtoPageComponent);
-    public void reorderComponents(List<DtoPageComponent> dtoOfPageComponent);
-    public void removeComponentFromPage(Long pageId, Long componentId);
-    public List<DtoPageComponent> getComponentsOfPage(Long pageId);
+  List<DtoPageComponent> getComponentsOfPage(Long pageId);
+
+  DtoPageComponentIU addComponentToPage(DtoPageComponentIU dtoPageComponent);
+
+  void reorderComponents(List<DtoPageComponentIU> dtoOfPageComponent);
+//    public void removeComponentFromPage(Long pageId, Long componentId);
 }

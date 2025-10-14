@@ -12,12 +12,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DtoPage {
-    private Long id;
-    private String title;
-    private String description;
-    private String content;
-    private String slug;
-    private Boolean isActive;
-    private DtoSeoInfo seoInfo;
-    private List<DtoPageComponent> pageComponents; // Page içindeki component'lar
+  private Long id;
+  private String title;
+  private String description;
+  private String content;
+  private String slug;
+  private Boolean isActive;
+  private DtoSeoInfo seoInfo;
+  private List<DtoPageComponent> pageComponents; // Page içindeki component'lar
 }

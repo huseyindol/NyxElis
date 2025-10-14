@@ -6,10 +6,14 @@ import com.nyxelis.enums.ComponentType;
 import java.util.List;
 
 public interface IComponentService {
-    public DtoComponent createComponent(DtoComponent dtoComponent);
-    public DtoComponent updateComponent(Long id, DtoComponent dtoComponent);
-    public void deleteComponent(Long id);
-    public DtoComponent getComponentById(Long id);
-    public List<DtoComponent> getComponentsByComponentType(ComponentType componentType);
-    // public List<DtoComponent> getComponentsByPageId(Long pageId);
+  DtoComponent createComponent(DtoComponent dtoComponent);
+
+  DtoComponent updateComponent(Long id, DtoComponent dtoComponent);
+
+  void deleteComponent(Long id);
+
+  DtoComponent getComponentById(Long id);
+
+  List<DtoComponent> getComponentsByComponentType(ComponentType componentType);
+  // public List<DtoComponent> getComponentsByPageId(Long pageId);
 }

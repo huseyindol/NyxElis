@@ -1,0 +1,18 @@
+[
+  {
+    "name": "widget 1",
+    "content": "widget 1 content",
+    "description": "widget 1 description",
+    "type": "POST",
+    "isActive": true,
+    "orderIndex": 1
+  },
+  {
+    "name": "widget 2",
+    "content": "widget 2 content",
+    "description": "widget 2 description",
+    "type": "BANNER",
+    "isActive": true,
+    "orderIndex": 2
+  }
+]
