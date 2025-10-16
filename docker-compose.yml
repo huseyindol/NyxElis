@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # 1. PostgreSQL Servisi (Veritabanı)
+  postgres-db:
+    # Docker'daki mevcut postgres imajınızı kullanır
+    image: bitnami/postgresql:latest
+
+    # .env.docker dosyasındaki ortam değişkenlerini kullan
+    env_file:
+      - .env.docker
+
+    # PostgreSQL için gerekli ek ortam değişkenleri (Docker imajı için zorunlu)
+    environment:
+      # DB_USER=postgres ve DB_PASSWORD=123456 zaten .env dosyasından geliyor.
+      # POSTGRES_DB değişkenini DB_NAME'dan alalım veya doğrudan verelim:
+      POSTGRES_DB: ${DB_NAME}
+      # PostgreSQL'in kurulum sırasında kullanacağı varsayılan parola
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+
+    # Opsiyonel: Verilerin Container silinse bile kalması için bir volume (tavsiye edilir)
+    volumes:
+      - postgres_data:/var/lib/postgresql/
+      - ./init-schema.sql:/docker-entrypoint-initdb.d/init-schema.sql
+
+    # 5432 portunu host makineye açar (AWS Security Group'ta açmanız gerekiyorsa)
+    ports:
+      - "5432:5432"
+
+    # Container'ın adı (Java uygulamasının DB_HOST olarak kullanacağı isim budur)
+    container_name: postgres-db
+
+  # 2. Java API Servisi (Uygulama)
+  nyxelis-api:
+    # Docker'daki mevcut nyxelis-api imajınızı kullanır
+    image: nyxelis-api:latest
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # .env.docker dosyasındaki ortam değişkenlerini kullan
+    env_file:
+      - .env.docker
+
+    # Container başlatılmadan önce veritabanının hazır olmasını bekler
+    depends_on:
+      - postgres-db
+
+    # Uygulamanın portunu host makineye açar (örneğin 8080)
+    ports:
+      - "8080:8080"
+
+    container_name: java-api
+
+# Volume Tanımlaması
+volumes:
+  postgres_data:
