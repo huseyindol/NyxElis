@@ -1,0 +1,57 @@
+name: Deploy to AWS
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'corretto'
+        java-version: '21'
+
+    - name: Build with Maven
+      run: ./mvnw clean package -DskipTests
+
+    - name: Build Docker image
+      run: docker build -t nyxelis-api .
+
+    - name: Save Docker image
+      run: docker save nyxelis-api:latest -o nyxelis-api.tar
+
+    - name: Copy image to AWS
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.AWS_HOST }}
+        username: ${{ secrets.AWS_USER }}
+        key: ${{ secrets.AWS_SSH_KEY }}
+        source: "nyxelis-api.tar"
+        target: "/home/ec2-user/"
+
+    - name: Deploy on AWS
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.AWS_HOST }}
+        username: ${{ secrets.AWS_USER }}
+        key: ${{ secrets.AWS_SSH_KEY }}
+        script: |
+          docker stop java-api 2>/dev/null || true
+          docker rm java-api 2>/dev/null || true
+          docker load -i /home/ec2-user/nyxelis-api.tar
+          
+          # .env.docker'dan environment'ları oku
+          docker run -d \
+            --name java-api \
+            -p 8080:8080 \
+            --env-file /home/ec2-user/.env.docker \
+            nyxelis-api
+          
+          rm /home/ec2-user/nyxelis-api.tar
