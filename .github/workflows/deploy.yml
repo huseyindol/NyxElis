@@ -56,4 +56,4 @@ jobs:
             # 3. Eski Container'ları durdur (Postgres hariç) ve yeni image ile sistemi yeniden başlat
             # Bu komut, sadece nyxelis-api servisini günceller ve yeniden başlatır. 
             # postgres-db zaten ayakta kalır ve verileri kaybetmez.
-            docker-compose up -d --build nyxelis-api
+            docker compose up -d --build nyxelis-api
