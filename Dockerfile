@@ -1,12 +1,9 @@
-# Stage 1: BUILDER
-FROM maven:3.9.6-eclipse-temurin-21-alpine AS builder
-
 # Uygulama kaynak kodunu builder container içine kopyala
 COPY . /app
 WORKDIR /app
 
 # Uygulamayı derle, JAR dosyasını oluştur.
-RUN mvn clean package -DskipTests
+RUN /app/mvnw clean package -DskipTests
 
 
 # ----------------------------------------------------------------------
