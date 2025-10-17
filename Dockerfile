@@ -1,3 +1,6 @@
+# ----------------------------------------------------------------------
+# Stage 1: BUILDER
+FROM amazoncorretto:21-alpine-jdk AS builder
 # Uygulama kaynak kodunu builder container içine kopyala
 COPY . /app
 WORKDIR /app

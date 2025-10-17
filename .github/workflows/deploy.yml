@@ -48,12 +48,8 @@ jobs:
             # 1. Image dosyasını Docker'a yükle
             docker load -i /home/ec2-user/nyxelis-api.tar
             rm /home/ec2-user/nyxelis-api.tar
-            
-            # 2. Çalışma dizinine geç (varsayalım ki docker-compose dosyası buradadır)
-            DEPLOY_DIR="/home/ec2-user/NyxElis" 
-            cd ${DEPLOY_DIR}
-            
-            # 3. Eski Container'ları durdur (Postgres hariç) ve yeni image ile sistemi yeniden başlat
+
+            # 2. Eski Container'ları durdur (Postgres hariç) ve yeni image ile sistemi yeniden başlat
             # Bu komut, sadece nyxelis-api servisini günceller ve yeniden başlatır. 
             # postgres-db zaten ayakta kalır ve verileri kaybetmez.
             docker-compose up -d --build nyxelis-api
