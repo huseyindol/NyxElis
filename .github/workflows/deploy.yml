@@ -23,12 +23,14 @@ jobs:
 
       - name: Prepare Docker context
         run: |
-          mkdir -p docker-context
-          cp target/starter-0.0.1-SNAPSHOT.jar docker-context/app.jar
-          cp Dockerfile docker-context/
+          mkdir -p /app
+          cp target/starter-0.0.1-SNAPSHOT.jar /app/app.jar
+          cp Dockerfile /app/Dockerfile
+          cp docker-compose.yml /app/docker-compose.yml
+          cp init-schema.sql /app/init-schema.sql
 
       - name: Build Docker image
-        run: docker build -t nyxelis-api docker-context/
+        run: docker build -t nyxelis-api /app
 
       - name: Save Docker image
         run: docker save nyxelis-api:latest -o nyxelis-api.tar
@@ -49,19 +51,7 @@ jobs:
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_SSH_KEY }}
           script: |
-            # 1. Image dosyasını Docker'a yükle
             docker load -i /home/ec2-user/nyxelis-api.tar
             rm /home/ec2-user/nyxelis-api.tar
-  
-            # 2. Proje dizinine git
-            cd /home/ec2-user/NyxElis
-            
-            # 3. Eski container'ı durdur ve kaldır (varsa)
-            docker-compose stop nyxelis-api 2>/dev/null || true
-            docker-compose rm -f nyxelis-api 2>/dev/null || true
-            
-            # 4. Yeni image ile container'ı başlat
-            docker-compose up -d nyxelis-api
-            
-            # 5. Logları kontrol et
+            docker-compose up -d
             docker-compose logs --tail=50 nyxelis-api
