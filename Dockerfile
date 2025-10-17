@@ -1,8 +1,9 @@
-# Single-stage runtime image
 FROM amazoncorretto:21-alpine-jdk
 
-# Build edilmiş JAR'ı kopyala
-COPY app.jar /app/app.jar
+WORKDIR /app
 
-# Uygulamayı çalıştır
+COPY target/starter-0.0.1-SNAPSHOT.jar /app/app.jar
+
+EXPOSE 8080
+
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
