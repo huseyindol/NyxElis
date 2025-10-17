@@ -33,7 +33,7 @@ jobs:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_SSH_KEY }}
-          source: "nyxelis-api.tar,docker-compose.yml,init-schema.sql,.env.docker"
+          source: "nyxelis-api.tar,docker-compose.yml,init-schema.sql"
           target: "/home/ec2-user/nyxelis/"
 
       - name: Deploy on AWS

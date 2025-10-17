@@ -6,9 +6,9 @@ services:
     # Docker'daki mevcut postgres imajınızı kullanır
     image: bitnami/postgresql:latest
 
-    # .env.docker dosyasındaki ortam değişkenlerini kullan
+    # .env dosyasındaki ortam değişkenlerini kullan
     env_file:
-      - .env.docker
+      - .env
 
     # PostgreSQL için gerekli ek ortam değişkenleri (Docker imajı için zorunlu)
     environment:
@@ -35,9 +35,9 @@ services:
     # Docker'daki mevcut nyxelis-api imajınızı kullanır
     image: nyxelis-api:latest
 
-    # .env.docker dosyasındaki ortam değişkenlerini kullan
+    # .env dosyasındaki ortam değişkenlerini kullan
     env_file:
-      - .env.docker
+      - .env
 
     # Container başlatılmadan önce veritabanının hazır olmasını bekler
     depends_on:
