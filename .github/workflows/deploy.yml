@@ -48,14 +48,20 @@ jobs:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_SSH_KEY }}
-          # Script, sunucunuzdaki docker-compose.yml ve .env.docker'ın
-          # bulunduğu dizinde çalıştırılmalıdır (Örn: /home/ec2-user/NyxElis)
           script: |
             # 1. Image dosyasını Docker'a yükle
             docker load -i /home/ec2-user/nyxelis-api.tar
             rm /home/ec2-user/nyxelis-api.tar
-
-            # 2. Eski Container'ları durdur (Postgres hariç) ve yeni image ile sistemi yeniden başlat
-            # Bu komut, sadece nyxelis-api servisini günceller ve yeniden başlatır. 
-            # postgres-db zaten ayakta kalır ve verileri kaybetmez.
-            docker-compose up -d --build nyxelis-api
+  
+            # 2. Proje dizinine git
+            cd /home/ec2-user/NyxElis
+            
+            # 3. Eski container'ı durdur ve kaldır (varsa)
+            docker-compose stop nyxelis-api 2>/dev/null || true
+            docker-compose rm -f nyxelis-api 2>/dev/null || true
+            
+            # 4. Yeni image ile container'ı başlat
+            docker-compose up -d nyxelis-api
+            
+            # 5. Logları kontrol et
+            docker-compose logs --tail=50 nyxelis-api

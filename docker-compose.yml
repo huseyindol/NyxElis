@@ -35,9 +35,9 @@ services:
     # Docker'daki mevcut nyxelis-api imajınızı kullanır
     image: nyxelis-api:latest
 
-    build:
-      context: .
-      dockerfile: Dockerfile
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     # .env.docker dosyasındaki ortam değişkenlerini kullan
     env_file:
       - .env.docker
