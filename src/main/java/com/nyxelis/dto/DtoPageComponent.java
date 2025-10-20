@@ -13,5 +13,5 @@ public class DtoPageComponent {
   private Long pageId;
   private Long componentId;
   private Integer orderIndex;
-  private DtoComponent component;
+  private DtoComponent components;
 }

@@ -43,9 +43,6 @@ public class PageComponentService implements IPageComponentService {
     entity.setComponent(component);
     entity.setOrderIndex(dtoPageComponent.getOrderIndex());
 
-    PageComponentId id = new PageComponentId(dtoPageComponent.getPageId(), dtoPageComponent.getComponentId());
-    entity.setId(id);
-
     PageComponent savedEntity = pageComponentRepository.save(entity);
     return pageComponentMapper.toPageComponentIUDto(savedEntity);
   }
@@ -59,18 +56,8 @@ public class PageComponentService implements IPageComponentService {
         .orElseThrow(() -> new EntityNotFoundException("PageComponent not found with id: " + id));
 
       pc.setOrderIndex(dto.getOrderIndex());
-      // JPA, transactinal içinde olduğu için save işlemi gereksiz, çünkü
-      // değişiklikler otomatik olarak kaydedilir
-      // pageComponentRepository.save(pc); // Not needed, changes are automatically
-      // flushed
     }
   }
-
-//    @Override
-//    public void removeComponentFromPage(Long pageId, Long componentId) {
-//        PageComponentId id = new PageComponentId(pageId, componentId);
-//        pageComponentRepository.deleteById(id);
-//    }
 
   @Override
   public List<DtoPageComponent> getComponentsOfPage(Long pageId) {

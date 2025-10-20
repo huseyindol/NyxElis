@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Hüseyin",
+    "firstName": "Hüseyin",
+    "lastName": "DOL",
+    "email": "huseyindol@gmail.com",
+    "phone": "+905307777777",
+    "address": {
+      "street": "Atatürk Mah. 1234 Sok.",
+      "city": "İzmir",
+      "state": "İzmir",
+      "zip": "35000",
+      "country": "Turkey"
+    }
+  }
+]

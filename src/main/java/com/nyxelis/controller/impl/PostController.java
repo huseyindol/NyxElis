@@ -17,7 +17,7 @@ public class PostController extends BaseController implements IPostController {
   private IPostService postService;
 
   @Override
-  @GetMapping("/{id}")
+  @GetMapping("/byId/{id}")
   public RootEntityResponse<DtoPost> postFindById(@PathVariable(value = "id") Long id) {
     return ok(postService.postFindById(id));
   }

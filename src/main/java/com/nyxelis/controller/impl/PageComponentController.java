@@ -30,12 +30,6 @@ public class PageComponentController implements IPageComponentController {
     pageComponentService.reorderComponents(dtoOfPageComponent);
   }
 
-//    @Override
-//    @DeleteMapping("/delete/{pageId}/{componentId}")
-//    public void removeComponentFromPage(@PathVariable Long pageId, @PathVariable Long componentId) {
-//        pageComponentService.removeComponentFromPage(pageId, componentId);
-//    }
-
   @Override
   @GetMapping("/{pageId}")
   public List<DtoPageComponent> getComponentsOfPage(@PathVariable Long pageId) {
