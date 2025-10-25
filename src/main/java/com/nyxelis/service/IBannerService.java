@@ -1,14 +1,11 @@
 package com.nyxelis.service;
 
-import com.nyxelis.dto.DtoBanner;
-import com.nyxelis.dto.DtoBannerIU;
+import com.nyxelis.entity.Banner;
 
 public interface IBannerService {
-  DtoBanner getBannerById(Long id);
+  Banner getBannerById(Long id);
 
-  DtoBannerIU createBanner(DtoBannerIU dtoBanner);
-
-  DtoBannerIU updateBanner(Long id, DtoBannerIU dtoBanner);
+  Banner saveBanner(Banner banner);
 
   void deleteBanner(Long id);
 }

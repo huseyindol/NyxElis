@@ -2,8 +2,10 @@ package com.nyxelis.controller.impl;
 
 import com.nyxelis.controller.IComponentController;
 import com.nyxelis.dto.DtoComponent;
+import com.nyxelis.entity.Component;
 import com.nyxelis.entity.RootEntityResponse;
 import com.nyxelis.enums.ComponentType;
+import com.nyxelis.mapper.ComponentMapper;
 import com.nyxelis.service.IComponentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +23,22 @@ public class ComponentController implements IComponentController {
   @Autowired
   private IComponentService componentService;
 
+  @Autowired
+  private ComponentMapper componentMapper;
+
   @Override
   @PostMapping("/create")
   public RootEntityResponse<DtoComponent> createComponent(@RequestBody DtoComponent dtoComponent) {
-    return ok(componentService.createComponent(dtoComponent));
+    return ok(componentMapper.toComponentDto(componentService.saveComponent(componentMapper.toComponentEntity(dtoComponent))));
   }
 
   @Override
   @PutMapping("/{id}")
   public RootEntityResponse<DtoComponent> updateComponent(@PathVariable(value = "id") Long id,
                                                           @RequestBody DtoComponent dtoComponent) {
-    return ok(componentService.updateComponent(id, dtoComponent));
+    Component existingComponent = componentService.getComponentById(id);
+    componentMapper.updateComponentEntityFromDto(dtoComponent, existingComponent);
+    return ok(componentMapper.toComponentDto(componentService.saveComponent(existingComponent)));
   }
 
   @Override
@@ -43,13 +50,13 @@ public class ComponentController implements IComponentController {
   @Override
   @GetMapping("/{id}")
   public RootEntityResponse<DtoComponent> getComponentById(@PathVariable(value = "id") Long id) {
-    return ok(componentService.getComponentById(id));
+    return ok(componentMapper.toComponentDto(componentService.getComponentById(id)));
   }
 
   @Override
   @GetMapping("/byType/{componentType}")
   public RootEntityResponse<List<DtoComponent>> getComponentsByComponentType(@PathVariable ComponentType componentType) {
-    return ok(componentService.getComponentsByComponentType(componentType));
+    return ok(componentMapper.toComponentDtoList(componentService.getComponentsByComponentType(componentType)));
   }
 
   // @GetMapping("/byPageId/{pageId}")

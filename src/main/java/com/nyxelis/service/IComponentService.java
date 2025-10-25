@@ -1,19 +1,16 @@
 package com.nyxelis.service;
 
-import com.nyxelis.dto.DtoComponent;
+import com.nyxelis.entity.Component;
 import com.nyxelis.enums.ComponentType;
 
 import java.util.List;
 
 public interface IComponentService {
-  DtoComponent createComponent(DtoComponent dtoComponent);
+  Component getComponentById(Long id);
 
-  DtoComponent updateComponent(Long id, DtoComponent dtoComponent);
+  Component saveComponent(Component component);
 
   void deleteComponent(Long id);
 
-  DtoComponent getComponentById(Long id);
-
-  List<DtoComponent> getComponentsByComponentType(ComponentType componentType);
-  // public List<DtoComponent> getComponentsByPageId(Long pageId);
+  List<Component> getComponentsByComponentType(ComponentType componentType);
 }

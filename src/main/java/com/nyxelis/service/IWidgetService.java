@@ -1,14 +1,11 @@
 package com.nyxelis.service;
 
-import com.nyxelis.dto.DtoWidget;
-import com.nyxelis.dto.DtoWidgetIU;
+import com.nyxelis.entity.Widget;
 
 public interface IWidgetService {
-  DtoWidget getWidgetById(Long id);
+  Widget getWidgetById(Long id);
 
-  DtoWidgetIU createWidget(DtoWidgetIU widgetData);
-
-  DtoWidgetIU updateWidget(Long id, DtoWidgetIU widgetData);
+  Widget saveWidget(Widget widget);
 
   void deleteWidget(Long id);
 }

@@ -1,12 +1,11 @@
 package com.nyxelis.service;
 
-import com.nyxelis.dto.DtoWidgetPost;
-import com.nyxelis.dto.DtoWidgetPostIU;
+import com.nyxelis.entity.WidgetPost;
 
 import java.util.List;
 
 public interface IWidgetPostService {
-  List<DtoWidgetPost> getWidgetPostByWidgetId(Long postId);
+  List<WidgetPost> getWidgetPostByWidgetId(Long postId);
 
-  DtoWidgetPostIU addWidgetPost(DtoWidgetPostIU widgetPostData);
+  WidgetPost addWidgetPost(WidgetPost widgetPost);
 }

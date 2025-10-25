@@ -1,12 +1,8 @@
 package com.nyxelis.service.impl;
 
-import com.nyxelis.dto.DtoPageComponent;
 import com.nyxelis.dto.DtoPageComponentIU;
-import com.nyxelis.entity.Component;
-import com.nyxelis.entity.Page;
 import com.nyxelis.entity.PageComponent;
 import com.nyxelis.entity.id.PageComponentId;
-import com.nyxelis.mapper.PageComponentMapper;
 import com.nyxelis.repository.ComponentRepository;
 import com.nyxelis.repository.PageComponentRepository;
 import com.nyxelis.repository.PageRepository;
@@ -27,41 +23,29 @@ public class PageComponentService implements IPageComponentService {
   private PageRepository pageRepository;
   @Autowired
   private ComponentRepository componentRepository;
-  @Autowired
-  private PageComponentMapper pageComponentMapper;
 
   @Override
-  public DtoPageComponentIU addComponentToPage(DtoPageComponentIU dtoPageComponent) {
-    Page page = pageRepository.findById(dtoPageComponent.getPageId())
-      .orElseThrow(() -> new IllegalArgumentException("Page not found"));
-
-    Component component = componentRepository.findById(dtoPageComponent.getComponentId())
-      .orElseThrow(() -> new IllegalArgumentException("Component not found"));
-
-    PageComponent entity = new PageComponent();
-    entity.setPage(page);
-    entity.setComponent(component);
-    entity.setOrderIndex(dtoPageComponent.getOrderIndex());
-
-    PageComponent savedEntity = pageComponentRepository.save(entity);
-    return pageComponentMapper.toPageComponentIUDto(savedEntity);
+  public PageComponent addComponentToPage(PageComponent pageComponent) {
+    return pageComponentRepository.save(pageComponent);
   }
 
   @Override
   @Transactional
-  public void reorderComponents(List<DtoPageComponentIU> dtoOfPageComponent) {
-    for (DtoPageComponentIU dto : dtoOfPageComponent) {
-      PageComponentId id = new PageComponentId(dto.getPageId(), dto.getComponentId());
+  public void reorderComponents(List<DtoPageComponentIU> pageComponents) {
+    for (DtoPageComponentIU existPC : pageComponents) {
+      PageComponentId id = new PageComponentId(
+        existPC.getPageId(),
+        existPC.getComponentId()
+      );
       PageComponent pc = pageComponentRepository.findById(id)
         .orElseThrow(() -> new EntityNotFoundException("PageComponent not found with id: " + id));
 
-      pc.setOrderIndex(dto.getOrderIndex());
+      pc.setOrderIndex(existPC.getOrderIndex());
     }
   }
 
   @Override
-  public List<DtoPageComponent> getComponentsOfPage(Long pageId) {
-    List<PageComponent> pageComponents = pageComponentRepository.findByPageId(pageId);
-    return pageComponentMapper.toPageComponentDtoList(pageComponents);
+  public List<PageComponent> getComponentsOfPage(Long pageId) {
+    return pageComponentRepository.findByPageId(pageId);
   }
 }

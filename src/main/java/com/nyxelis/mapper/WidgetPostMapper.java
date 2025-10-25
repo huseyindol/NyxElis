@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = { WidgetMapper.class, PostMapper.class })
+@Mapper(componentModel = "spring", uses = {WidgetMapper.class, PostMapper.class})
 public interface WidgetPostMapper {
   @Mapping(source = "widget.id", target = "widgetId")
   @Mapping(source = "post.id", target = "postId")
@@ -20,7 +20,7 @@ public interface WidgetPostMapper {
   @Mapping(source = "post", target = "posts")
   DtoWidgetPost toWidgetPostDto(WidgetPost widgetPost);
 
-  @Mapping(source = "widget.id", target = "widgetId")
+  @Mapping(source = "widget.id", target = "widgtId")
   @Mapping(source = "post.id", target = "postId")
   @Mapping(source = "widget", target = "widgets")
   @Mapping(source = "post", target = "posts")

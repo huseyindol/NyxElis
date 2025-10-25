@@ -12,7 +12,7 @@ public interface WidgetMapper {
 
   DtoWidgetIU toWidgetIUDto(Widget widget);
 
-  Widget toWidgetIUEntity(DtoWidgetIU dtoWidgetIU);
+  Widget toWidgetEntity(DtoWidgetIU dtoWidgetIU);
 
   void updateWidgetEntityFromDto(DtoWidgetIU dtoWidget, @MappingTarget Widget widget);
 }

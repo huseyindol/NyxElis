@@ -1,16 +1,13 @@
 package com.nyxelis.service;
 
-import com.nyxelis.dto.DtoPost;
-import com.nyxelis.dto.DtoPostIU;
+import com.nyxelis.entity.Post;
 
 public interface IPostService {
-  DtoPost postFindById(Long id);
+  Post postFindById(Long id);
 
-  DtoPost postFindBySlug(String slug);
+  Post postFindBySlug(String slug);
 
-  DtoPost createPost(DtoPostIU dtoPost);
-
-  DtoPost updatePost(Long id, DtoPostIU dtoPost);
+  Post savePost(Post post);
 
   void deletePost(Long id);
 }

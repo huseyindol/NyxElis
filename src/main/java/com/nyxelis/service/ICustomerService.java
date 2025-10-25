@@ -1,9 +1,9 @@
 package com.nyxelis.service;
 
-import com.nyxelis.dto.DtoCustomer;
+import com.nyxelis.entity.Customer;
 
 public interface ICustomerService {
-  DtoCustomer findById(Long id);
+  Customer findById(Long id);
 
   void removeById(Long id);
 }

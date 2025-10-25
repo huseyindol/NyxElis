@@ -1,15 +1,13 @@
 package com.nyxelis.service;
 
-import com.nyxelis.dto.DtoPage;
+import com.nyxelis.entity.Page;
 
 public interface IPageService {
-  DtoPage pageFindById(Long id);
+  Page pageFindById(Long id);
 
-  DtoPage pageFindBySlug(String slug);
+  Page pageFindBySlug(String slug);
 
-  DtoPage createPage(DtoPage dtoPage);
-
-  DtoPage updatePage(Long id, DtoPage dtoPage);
+  Page savePage(Page page);
 
   void deletePage(Long id);
 }

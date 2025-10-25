@@ -2,6 +2,8 @@ package com.nyxelis.controller.impl;
 
 import com.nyxelis.controller.ICustomerController;
 import com.nyxelis.dto.DtoCustomer;
+import com.nyxelis.entity.Customer;
+import com.nyxelis.mapper.CustomerMapper;
 import com.nyxelis.service.ICustomerService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,14 @@ public class CustomerController implements ICustomerController {
   @Autowired
   private ICustomerService customerService;
 
+  @Autowired
+  private CustomerMapper customerMapper;
+
   @Override
   @GetMapping("/{id}")
   public DtoCustomer findById(@PathVariable(value = "id") Long id) {
-    return customerService.findById(id);
+    Customer customer = customerService.findById(id);
+    return customerMapper.toCustomerDto(customer);
   }
 
   @Override
