@@ -1,22 +1,43 @@
 package com.nyxelis.config;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nyxelis.dto.*;
-import com.nyxelis.entity.*;
-import com.nyxelis.entity.id.ComponentBannerId;
-import com.nyxelis.entity.id.PageComponentId;
-import com.nyxelis.enums.ComponentType;
-import com.nyxelis.repository.*;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nyxelis.dto.DtoBanner;
+import com.nyxelis.dto.DtoComponent;
+import com.nyxelis.dto.DtoPage;
+import com.nyxelis.dto.DtoPostIU;
+import com.nyxelis.dto.DtoSeoInfo;
+import com.nyxelis.dto.DtoWidgetIU;
+import com.nyxelis.entity.Banner;
+import com.nyxelis.entity.ComponentBanner;
+import com.nyxelis.entity.Customer;
+import com.nyxelis.entity.Page;
+import com.nyxelis.entity.PageComponent;
+import com.nyxelis.entity.Post;
+import com.nyxelis.entity.SeoInfo;
+import com.nyxelis.entity.Widget;
+import com.nyxelis.entity.id.ComponentBannerId;
+import com.nyxelis.entity.id.PageComponentId;
+import com.nyxelis.enums.ComponentType;
+import com.nyxelis.repository.BannerRepository;
+import com.nyxelis.repository.ComponentBannerRepository;
+import com.nyxelis.repository.ComponentRepository;
+import com.nyxelis.repository.CustomerRepository;
+import com.nyxelis.repository.PageComponentRepository;
+import com.nyxelis.repository.PageRepository;
+import com.nyxelis.repository.PostRepository;
+import com.nyxelis.repository.WidgetRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -54,13 +75,6 @@ public class DataInitializer implements CommandLineRunner {
       log.info("PageComponent Mock data initialization completed.");
     } else {
       log.info("PageComponent Database already contains data or prerequisites not met, skipping initialization.");
-    }
-    if (bannerRepository.count() == 0) {
-      log.info("Banner Database is empty, initializing with mock data...");
-      loadMockBannerData();
-      log.info("Banner Mock data initialization completed.");
-    } else {
-      log.info("Banner Database already contains data, skipping initialization.");
     }
     if (postRepository.count() == 0) {
       log.info("Post Database is empty, initializing with mock data...");
@@ -125,9 +139,9 @@ public class DataInitializer implements CommandLineRunner {
 
     ObjectMapper objectMapper = new ObjectMapper();
     List<DtoPage> pageList = objectMapper.readValue(
-      inputStream,
-      new TypeReference<List<DtoPage>>() {
-      });
+        inputStream,
+        new TypeReference<List<DtoPage>>() {
+        });
 
     log.info("Loaded {} page records", pageList.size());
     return pageList;
@@ -179,7 +193,7 @@ public class DataInitializer implements CommandLineRunner {
             componentBanner.setComponent(savedComponent);
             componentBanner.setBanner(savedBanner);
             componentBanner.setOrderIndex(
-              dtoBanner.getOrderIndex() != null ? dtoBanner.getOrderIndex() : orderIndex);
+                dtoBanner.getOrderIndex() != null ? dtoBanner.getOrderIndex() : orderIndex);
 
             componentBannerRepository.save(componentBanner);
             log.info("Successfully created component-banner relationship");
@@ -203,9 +217,9 @@ public class DataInitializer implements CommandLineRunner {
 
     ObjectMapper objectMapper = new ObjectMapper();
     List<DtoComponent> componentList = objectMapper.readValue(
-      inputStream,
-      new TypeReference<List<DtoComponent>>() {
-      });
+        inputStream,
+        new TypeReference<List<DtoComponent>>() {
+        });
 
     log.info("Loaded {} component records", componentList.size());
     return componentList;
@@ -233,57 +247,15 @@ public class DataInitializer implements CommandLineRunner {
 
         pageComponentRepository.save(pageComponent);
         log.info("Successfully created page-component relationship for page: {} and component: {}",
-          page.getTitle(), component.getName());
+            page.getTitle(), component.getName());
       } else {
         log.warn("Skipping PageComponent creation. Page or Component not found for IDs - Page ID: 1, " +
-          "Component ID: 1"
-        );
+            "Component ID: 1");
       }
 
       log.info("Successfully loaded {} page-component relationships", 1);
     } catch (Exception e) {
       log.error("Error loading page-component mock data: ", e);
-    }
-  }
-
-  private List<DtoBannerIU> loadBannerData() throws IOException {
-    log.info("Loading banner mock data...");
-
-    ClassPathResource resource = new ClassPathResource("mock-data/banner.json");
-    InputStream inputStream = resource.getInputStream();
-
-    ObjectMapper objectMapper = new ObjectMapper();
-    List<DtoBannerIU> bannerList = objectMapper.readValue(
-      inputStream,
-      new TypeReference<List<DtoBannerIU>>() {
-      });
-
-    log.info("Loaded {} banner records", bannerList.size());
-    return bannerList;
-  }
-
-  private void loadMockBannerData() {
-    try {
-      List<DtoBannerIU> bannerList = loadBannerData();
-
-      for (DtoBannerIU dtoBanner : bannerList) {
-        Banner banner = new Banner();
-        banner.setTitle(dtoBanner.getTitle());
-        banner.setDescription(dtoBanner.getDescription());
-        banner.setImageUrl(dtoBanner.getImageUrl());
-        banner.setLink(dtoBanner.getLink());
-        banner.setAltText(dtoBanner.getAltText());
-        banner.setIsActive(dtoBanner.getIsActive());
-        banner.setOrderDisplay(dtoBanner.getOrderDisplay());
-
-        bannerRepository.save(banner);
-        log.info("Successfully created banner: {}", banner.getTitle());
-      }
-
-      log.info("Successfully loaded {} banners", bannerList.size());
-
-    } catch (Exception e) {
-      log.error("Error loading banner mock data: ", e);
     }
   }
 
@@ -295,9 +267,9 @@ public class DataInitializer implements CommandLineRunner {
 
     ObjectMapper objectMapper = new ObjectMapper();
     List<DtoPostIU> postList = objectMapper.readValue(
-      inputStream,
-      new TypeReference<List<DtoPostIU>>() {
-      });
+        inputStream,
+        new TypeReference<List<DtoPostIU>>() {
+        });
 
     log.info("Loaded {} post records", postList.size());
     return postList;
@@ -308,8 +280,8 @@ public class DataInitializer implements CommandLineRunner {
       List<DtoPostIU> postList = loadPostData();
 
       for (DtoPostIU dtoPost : postList) {
-        Customer author = customerRepository.findById(dtoPost.getAuthorId()).orElseThrow(() ->
-          new RuntimeException("Author not found with ID: " + dtoPost.getAuthorId()));
+        Customer author = customerRepository.findById(dtoPost.getAuthorId())
+            .orElseThrow(() -> new RuntimeException("Author not found with ID: " + dtoPost.getAuthorId()));
 
         Post post = new Post();
         post.setTitle(dtoPost.getTitle());
@@ -318,7 +290,6 @@ public class DataInitializer implements CommandLineRunner {
         post.setAuthor(author);
         post.setIsActive(dtoPost.getIsActive());
         post.setOrderIndex(dtoPost.getOrderIndex());
-
 
         postRepository.save(post);
         log.info("Successfully created post: {}", post.getTitle());
@@ -339,9 +310,9 @@ public class DataInitializer implements CommandLineRunner {
 
     ObjectMapper objectMapper = new ObjectMapper();
     List<DtoWidgetIU> widgetList = objectMapper.readValue(
-      inputStream,
-      new TypeReference<List<DtoWidgetIU>>() {
-      });
+        inputStream,
+        new TypeReference<List<DtoWidgetIU>>() {
+        });
 
     log.info("Loaded {} widget records", widgetList.size());
     return widgetList;

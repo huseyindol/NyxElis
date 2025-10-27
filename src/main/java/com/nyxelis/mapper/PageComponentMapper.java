@@ -12,6 +12,8 @@ import java.util.List;
 public interface PageComponentMapper {
   @Mapping(source = "page.id", target = "pageId")
   @Mapping(source = "component.id", target = "componentId")
+  @Mapping(source = "component", target = "components")
+  @Mapping(source = "orderIndex", target = "orderIndex")
   DtoPageComponent toPageComponentDto(PageComponent pageComponent);
 
   DtoPageComponentIU toPageComponentIUDto(PageComponent pageComponent);

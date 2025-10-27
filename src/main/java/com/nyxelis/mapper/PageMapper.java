@@ -8,7 +8,7 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring", uses = {PageComponentMapper.class})
 public interface PageMapper {
-  @Mapping(source = "pageComponents", target = "pageComponents")
+  @Mapping(target = "pageComponents", source = "pageComponents")
   DtoPage toPageDto(Page page);
 
   Page toPageEntity(DtoPage dtoPage);
