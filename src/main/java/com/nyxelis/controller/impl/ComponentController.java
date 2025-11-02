@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.nyxelis.entity.RootEntityResponse.ok;
-
 @RestController
 @RequestMapping("/api/component")
 @Tag(name = "Component Services")
-public class ComponentController implements IComponentController {
+public class ComponentController extends BaseController implements IComponentController {
 
   @Autowired
   private IComponentService componentService;
@@ -34,8 +32,7 @@ public class ComponentController implements IComponentController {
 
   @Override
   @PutMapping("/{id}")
-  public RootEntityResponse<DtoComponent> updateComponent(@PathVariable(value = "id") Long id,
-                                                          @RequestBody DtoComponent dtoComponent) {
+  public RootEntityResponse<DtoComponent> updateComponent(@PathVariable(value = "id") Long id, @RequestBody DtoComponent dtoComponent) {
     Component existingComponent = componentService.getComponentById(id);
     componentMapper.updateComponentEntityFromDto(dtoComponent, existingComponent);
     return ok(componentMapper.toComponentDto(componentService.saveComponent(existingComponent)));

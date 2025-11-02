@@ -1,43 +1,22 @@
 package com.nyxelis.config;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nyxelis.dto.*;
+import com.nyxelis.entity.*;
+import com.nyxelis.entity.id.ComponentBannerId;
+import com.nyxelis.entity.id.PageComponentId;
+import com.nyxelis.enums.ComponentType;
+import com.nyxelis.repository.*;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nyxelis.dto.DtoBanner;
-import com.nyxelis.dto.DtoComponent;
-import com.nyxelis.dto.DtoPage;
-import com.nyxelis.dto.DtoPostIU;
-import com.nyxelis.dto.DtoSeoInfo;
-import com.nyxelis.dto.DtoWidgetIU;
-import com.nyxelis.entity.Banner;
-import com.nyxelis.entity.ComponentBanner;
-import com.nyxelis.entity.Customer;
-import com.nyxelis.entity.Page;
-import com.nyxelis.entity.PageComponent;
-import com.nyxelis.entity.Post;
-import com.nyxelis.entity.SeoInfo;
-import com.nyxelis.entity.Widget;
-import com.nyxelis.entity.id.ComponentBannerId;
-import com.nyxelis.entity.id.PageComponentId;
-import com.nyxelis.enums.ComponentType;
-import com.nyxelis.repository.BannerRepository;
-import com.nyxelis.repository.ComponentBannerRepository;
-import com.nyxelis.repository.ComponentRepository;
-import com.nyxelis.repository.CustomerRepository;
-import com.nyxelis.repository.PageComponentRepository;
-import com.nyxelis.repository.PageRepository;
-import com.nyxelis.repository.PostRepository;
-import com.nyxelis.repository.WidgetRepository;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -139,9 +118,9 @@ public class DataInitializer implements CommandLineRunner {
 
     ObjectMapper objectMapper = new ObjectMapper();
     List<DtoPage> pageList = objectMapper.readValue(
-        inputStream,
-        new TypeReference<List<DtoPage>>() {
-        });
+      inputStream,
+      new TypeReference<List<DtoPage>>() {
+      });
 
     log.info("Loaded {} page records", pageList.size());
     return pageList;
@@ -193,7 +172,7 @@ public class DataInitializer implements CommandLineRunner {
             componentBanner.setComponent(savedComponent);
             componentBanner.setBanner(savedBanner);
             componentBanner.setOrderIndex(
-                dtoBanner.getOrderIndex() != null ? dtoBanner.getOrderIndex() : orderIndex);
+              dtoBanner.getOrderIndex() != null ? dtoBanner.getOrderIndex() : orderIndex);
 
             componentBannerRepository.save(componentBanner);
             log.info("Successfully created component-banner relationship");
@@ -217,9 +196,9 @@ public class DataInitializer implements CommandLineRunner {
 
     ObjectMapper objectMapper = new ObjectMapper();
     List<DtoComponent> componentList = objectMapper.readValue(
-        inputStream,
-        new TypeReference<List<DtoComponent>>() {
-        });
+      inputStream,
+      new TypeReference<List<DtoComponent>>() {
+      });
 
     log.info("Loaded {} component records", componentList.size());
     return componentList;
@@ -247,10 +226,10 @@ public class DataInitializer implements CommandLineRunner {
 
         pageComponentRepository.save(pageComponent);
         log.info("Successfully created page-component relationship for page: {} and component: {}",
-            page.getTitle(), component.getName());
+          page.getTitle(), component.getName());
       } else {
         log.warn("Skipping PageComponent creation. Page or Component not found for IDs - Page ID: 1, " +
-            "Component ID: 1");
+          "Component ID: 1");
       }
 
       log.info("Successfully loaded {} page-component relationships", 1);
@@ -267,9 +246,9 @@ public class DataInitializer implements CommandLineRunner {
 
     ObjectMapper objectMapper = new ObjectMapper();
     List<DtoPostIU> postList = objectMapper.readValue(
-        inputStream,
-        new TypeReference<List<DtoPostIU>>() {
-        });
+      inputStream,
+      new TypeReference<List<DtoPostIU>>() {
+      });
 
     log.info("Loaded {} post records", postList.size());
     return postList;
@@ -281,7 +260,7 @@ public class DataInitializer implements CommandLineRunner {
 
       for (DtoPostIU dtoPost : postList) {
         Customer author = customerRepository.findById(dtoPost.getAuthorId())
-            .orElseThrow(() -> new RuntimeException("Author not found with ID: " + dtoPost.getAuthorId()));
+          .orElseThrow(() -> new RuntimeException("Author not found with ID: " + dtoPost.getAuthorId()));
 
         Post post = new Post();
         post.setTitle(dtoPost.getTitle());
@@ -310,9 +289,9 @@ public class DataInitializer implements CommandLineRunner {
 
     ObjectMapper objectMapper = new ObjectMapper();
     List<DtoWidgetIU> widgetList = objectMapper.readValue(
-        inputStream,
-        new TypeReference<List<DtoWidgetIU>>() {
-        });
+      inputStream,
+      new TypeReference<List<DtoWidgetIU>>() {
+      });
 
     log.info("Loaded {} widget records", widgetList.size());
     return widgetList;

@@ -17,12 +17,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.nyxelis.entity.RootEntityResponse.ok;
-
 @RestController
 @RequestMapping("/api/page-component")
 @Tag(name = "Page Component Services")
-public class PageComponentController implements IPageComponentController {
+public class PageComponentController extends BaseController implements IPageComponentController {
 
   @Autowired
   private IPageComponentService pageComponentService;

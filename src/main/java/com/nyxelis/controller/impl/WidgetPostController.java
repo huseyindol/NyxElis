@@ -18,12 +18,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.nyxelis.entity.RootEntityResponse.ok;
-
 @RestController
 @RequestMapping("/api/widget-posts")
 @Tag(name = "Widget Post Controller")
-public class WidgetPostController implements IWidgetPostController {
+public class WidgetPostController extends BaseController implements IWidgetPostController {
   @Autowired
   private IWidgetPostService widgetPostService;
   @Autowired

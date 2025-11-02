@@ -11,12 +11,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import static com.nyxelis.entity.RootEntityResponse.ok;
-
 @RestController
 @RequestMapping("/api/banners")
 @Tag(name = "Banner Services")
-public class BannerController implements IBannerController {
+public class BannerController extends BaseController implements IBannerController {
   @Autowired
   private BannerService bannerService;
 
